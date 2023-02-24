@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://kit.fontawesome.com/4c2b4e375e.js" crossorigin="anonymous"></script>
         <title>{% block title %}SnowBoard{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -14,14 +15,7 @@
 			<div> {% block body %}{% endblock %}</div>
 		</main>
 
-		<footer>
-			<p class="text-center">
-					&copy; Copyright
-					{{ 'now'|date('Y') }}
-					&middot;
-				<a href="/">About</a>
-			</p>
-		</footer>
+		{% include "base/footer.html.twig" %}
 
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
