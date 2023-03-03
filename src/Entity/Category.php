@@ -29,7 +29,7 @@ class Category
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $descrition = null;
+    private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Figure::class, orphanRemoval: true)]
     private Collection $figures;
@@ -111,14 +111,14 @@ class Category
         return $this;
     }
 
-    public function getDescrition(): ?string
+    public function getDescription(): ?string
     {
-        return $this->descrition;
+        return $this->description;
     }
 
-    public function setDescrition(string $descrition): self
+    public function setDescription(string $description): self
     {
-        $this->descrition = $descrition;
+        $this->description = $description;
 
         return $this;
     }
