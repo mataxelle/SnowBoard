@@ -162,7 +162,7 @@ class Figure
     /**
      * @return Collection<int, Image>
      */
-    public function getImage(): Collection
+    public function getImages(): Collection
     {
         return $this->images;
     }
