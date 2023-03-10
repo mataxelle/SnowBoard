@@ -23,6 +23,26 @@
       <h3>
         Les figures
       </h3>
+
+      <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+      {% for figure in figures %}
+        <div class="col">
+					<div class="card h-100">
+						<div class="card-body">
+							<h5 class="card-title">{{ figure.name }}</h5>
+							<a href="/post/{{ figure.slug }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
+							<p class="card-text d-flex justify-content-end">
+								<small class="text-muted">
+									<em>Publié le
+										{{ figure.updatedAt|date('d/m/Y') }}</em>
+								</small>
+							</p>
+						</div>
+					</div>
+
+				</div>
+      {% endfor %}
+      </div>
     </div>
   </div>
 {% endblock %}
