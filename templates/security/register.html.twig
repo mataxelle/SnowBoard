@@ -5,7 +5,8 @@
 {% block body %}
     <h1 class="text-center my-5">Inscription</h1>
 
+    
     <div class="col-6 offset-3">
-        {{ form(registrationForm)}}
+        {% include "includes/forms/registerForm.html.twig" %}
     </div>
 {% endblock %}

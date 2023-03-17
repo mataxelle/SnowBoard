@@ -1,0 +1,25 @@
+{{ form_start(registrationForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
+<div class="mb-3">
+	{{ form_label(registrationForm.firstname, 'Prénom') }}
+	{{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+	{{ form_label(registrationForm.lastname, 'Nom') }}
+	{{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+	{{ form_label(registrationForm.imageProfile) }}
+	{{ form_widget(registrationForm.imageProfile, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div>
+	{{ form_label(registrationForm.email, 'Email') }}
+	{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+	{{ form_label(registrationForm.password, 'Mot de passe') }}
+	{{ form_widget(registrationForm.password, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+	<input type="submit" class="btn btn-primary" value="S'inscrire" formnovalidate>
+</div>
+{{ form_end(registrationForm) }}

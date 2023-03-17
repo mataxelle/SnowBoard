@@ -50,7 +50,7 @@ class SecurityController extends AbstractController
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('password')->getData()
                 )
             );
 
@@ -62,7 +62,7 @@ class SecurityController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('security/register.html.twig', [

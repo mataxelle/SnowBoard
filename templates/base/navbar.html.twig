@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">SnowBoard</a>
+      <a class="navbar-brand" href="/">SnowBoard</a>
       <button class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
@@ -14,25 +14,34 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto text-center">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#">Connexion</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Inscription</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Connexion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Inscription</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
               href="#"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false">
-              Username
+              Compte
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Mon compte</a></li>
-              <li><a class="dropdown-item" href="#">Deconnexion</a></li>
+              {% if app.user %}
+                <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                <li><a class="dropdown-item" href="/logout">Deconnexion</a></li>
+              {% elseif app.user is null %}
+                <li><a class="dropdown-item" href="/login">Connexion</a></li>
+                <li><a class="dropdown-item" href="/register">Inscription</a></li>
+              {% endif %}
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-         </ul>
+        </ul>
       </div>
     </div>
   </nav>
