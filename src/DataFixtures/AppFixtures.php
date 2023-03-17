@@ -28,19 +28,19 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         //User admin fixtures
-        $user = new User();
+        $admin = new User();
 
-        $user->setEmail('admin@test.com')
+        $admin->setEmail('admin@test.com')
             ->setRoles(['ROLE_ADMIN'])
             ->setFirstname($faker->firstName())
             ->setLastname($faker->lastName())
             ->setImageProfile($faker->imageUrl());
 
         //Password hash
-        $password = $this->passwordHasher->hashPassword($user, 'azertyuiop');
-        $user->setPassword($password);
+        $password = $this->passwordHasher->hashPassword($admin, 'azertyuiop');
+        $admin->setPassword($password);
 
-        $manager->persist($user);
+        $manager->persist($admin);
 
         //User fixtures
         for ($i = 0; $i < 10; $i++) {
@@ -76,10 +76,8 @@ class AppFixtures extends Fixture
                 $figure->setName($faker->name())
                     ->setSlug($faker->slug())
                     ->setDescription($faker->text(350))
-                    ->setCreatedBy($user)
-                    ->setUpdatedBy($user)
+                    ->setCreatedBy($admin)
                     ->setCategory($categorie);
-
 
                 $manager->persist($figure);
 

@@ -9,9 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[Vich\Uploadable]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -37,8 +40,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, type: 'string')]
     private ?string $imageProfile = null;
+
+    #[Vich\UploadableField(mapping: 'image_profile', fileNameProperty: 'imageProfile')]
+    private ?file $imageProfileFile = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -164,6 +170,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->imageProfile = $imageProfile;
 
         return $this;
+    }
+
+    public function getImageProfileFile()
+    {
+        return $this->imageProfileFile;
+    }
+
+    public function setImageProfileFile(File $imageProfile = null)
+    {
+        $this->imageProfileFile = $imageProfile;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($imageProfile) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

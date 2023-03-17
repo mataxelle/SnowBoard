@@ -25,7 +25,6 @@ class FigureUnitTest extends TestCase
                 ->setCategory($category)
                 ->setDescription('description')
                 ->setCreatedBy($user)
-                ->setUpdatedBy($user)
                 ->setCreatedAt($datetime)
                 ->setUpdatedAt($datetime);
 
@@ -34,7 +33,6 @@ class FigureUnitTest extends TestCase
         $this->assertTrue($figure->getCategory() === $category);
         $this->assertTrue($figure->getDescription() === 'description');
         $this->assertTrue($figure->getCreatedBy() === $user);
-        $this->assertTrue($figure->getUpdatedBy() === $user);
         $this->assertTrue($figure->getCreatedAt() === $datetime);
         $this->assertTrue($figure->getUpdatedAt() === $datetime);
     }
@@ -51,7 +49,6 @@ class FigureUnitTest extends TestCase
                 ->setCategory($category)
                 ->setDescription('description')
                 ->setCreatedBy($user)
-                ->setUpdatedBy($user)
                 ->setCreatedAt($datetime)
                 ->setUpdatedAt($datetime);
 
@@ -60,9 +57,8 @@ class FigureUnitTest extends TestCase
         $this->assertFalse($figure->getCategory() === new Category);
         $this->assertFalse($figure->getDescription() === 'false');
         $this->assertFalse($figure->getCreatedBy() === new User);
-        $this->assertFalse($figure->getUpdatedBy() === new User);
         $this->assertFalse($figure->getCreatedAt() === new DateTimeImmutable());
-        $this->assertFalse($figure->getUpdatedBy() === new DateTimeImmutable());
+        $this->assertFalse($figure->getUpdatedAt() === new DateTimeImmutable());
     }
 
     public function testIsEmpty(): void
@@ -74,9 +70,8 @@ class FigureUnitTest extends TestCase
         $this->assertEmpty($figure->getCategory());
         $this->assertEmpty($figure->getDescription());
         $this->assertEmpty($figure->getCreatedBy());
-        $this->assertEmpty($figure->getUpdatedBy());
         $this->assertEmpty($figure->getCreatedAt());
-        $this->assertEmpty($figure->getUpdatedBy());
+        $this->assertEmpty($figure->getUpdatedAt());
         $this->assertEmpty($figure->getId());
     }
 
