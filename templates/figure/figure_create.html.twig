@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une figure{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5">Ajouter une figure</h1>
+
+    
+    <div class="col-6 offset-3">
+        {% include "includes/forms/figureForm.html.twig" %}
+    </div>
+{% endblock %}
