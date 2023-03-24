@@ -4,9 +4,9 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Figure;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +22,13 @@ class FigureFormType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('category', EntityType::class, [
                 'class' => Category::class
+            ])
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageFormType::class,
+                'required' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true
             ])
         ;
     }

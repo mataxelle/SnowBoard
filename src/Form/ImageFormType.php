@@ -2,11 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Figure;
 use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ImageFormType extends AbstractType
 {
@@ -15,10 +15,7 @@ class ImageFormType extends AbstractType
         $builder
         ->add('imageFile', VichFileType::class, [
             'required' => false,
-            'data_class' => null
-        ])
-        ->add('figure', EntityType::class, [
-            'class' => Figure::class
+            'download_uri' => true
         ])
         ;
     }
