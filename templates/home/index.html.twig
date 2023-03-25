@@ -13,6 +13,12 @@
       est essentiel !
     </h1>
 
+    {% if app.user %}
+			<h4>
+				<a href="/add" role="button" class="btn btn-lg btn-primary mt-5">Ajouter un article</a>
+			</h4>
+		{% endif %}
+
 	<img class="img-fluid" src="/assets/images/snow1.jpg" alt="image de code">
 
     <h2 class="my-5">
