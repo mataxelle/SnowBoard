@@ -37,8 +37,8 @@ class FigureController extends AbstractController
                 $figure->setCreatedAt(new \DateTimeImmutable());
             }
 
-            foreach ($form->getData()->getImages() as $img){
-                $entityManagerInterface->persist($img);
+            $images = $form->getData()->getImages();
+            foreach ($images as $img){
                 $figure->addImage($img);
             }
 
