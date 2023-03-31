@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FigureController extends AbstractController
 {
-    #[Route('/figure', name: 'app_figure')]
+    #[Route('/figure', name: 'figures_all')]
     public function index(): Response
     {
         return $this->render('figure/index.html.twig', [
@@ -20,7 +20,7 @@ class FigureController extends AbstractController
         ]);
     }
 
-    #[Route('/add', name: 'add')]
+    #[Route('/add', name: 'figure_add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         $figure = new Figure();
@@ -52,4 +52,17 @@ class FigureController extends AbstractController
             'figureCreateForm' => $form->createView(),
         ]);
     }
+
+    #[Route('/figure/{slug}', name: 'figure_show')]
+    public function figure(?Figure $figure): Response
+    {
+        if (!$figure) {
+            return $this->redirectToRoute('home');
+        }
+    
+        return $this->render('figure/figure_show.html.twig', [
+            'figure' => $figure
+        ]);
+    }
+
 }

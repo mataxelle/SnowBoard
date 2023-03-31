@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ figure.slug }}
+{% endblock %}
+
+{% block body %}
+  <h1 class="figureName text-center my-5">
+    {{ figure.name }}
+  </h1>
+
+  <div class="container text-center my-3">
+	<div class="row mx-auto my-auto justify-content-center">
+	 {% if figure.images %}
+      <div id="imageCarousel" class="carousel slide" data-interval="false" data-bs-ride="carousel">
+		<ol class="carousel-indicators">
+           {% for i in 0..figure.images|length %}
+            <li data-target="#imageCarousel" data-slide-to="{{ i }}" class="active"></li>
+            {% endfor %}
+		</ol>
+		<div class="carousel-inner">
+		{% for image in figure.images %}
+          <div class="carousel-item {% if loop.first %} active {% endif %}">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-img">
+                  <img data-photoswipe-loop="{{ loop.index0 }}" src="{{ vich_uploader_asset(image, 'imageFile') }}"
+				  alt="figure image"
+                    class="figure-thumbnail" />
+                </div>
+              </div>
+            </div>
+          </div>
+		{% endfor %}
+		</div>
+        <a class="carousel-control-prev bg-transparent w-aut"
+          href="#imageCarousel"
+          role="button"
+          data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next bg-transparent w-aut"
+          href="#imageCarousel"
+          role="button"
+          data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+      </div>
+	  {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="border-0">
+        {% if figure.images %}
+          <div class="lightbox-gallery">
+            <div class="container">
+              <div class="row images">
+                {% for image in figure.images %}
+                  <div class="col-md-4">
+                    <a href="{{ vich_uploader_asset(image, 'imageFile') }}"
+                      data-toggle="lightbox"
+                      data-gallery="example-gallery">
+                      <img class="figure-thumbnail"
+                        src="{{ vich_uploader_asset(image, 'imageFile') }}"
+                        alt="image" />
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <img class="h-100"
+            src="/assets/images/snow1.jpg"
+            alt="image de code" />
+        {% endif %}
+
+        <hr />
+
+        <div class="d-flex justify-content-end">
+          <span class="text-muted">
+            <em>
+              Publié le
+              {{ figure.updatedAt|date('d/m/Y') }}
+            </em>
+          </span>
+        </div>
+
+        <hr />
+
+        <div class="">
+          <p class="mt-4">
+            {{ figure.description }}
+          </p>
+        </div>
+
+        <hr />
+      </div>
+
+      <div class="border-bottom my-4 pb-4">
+        <div class="row">
+          <div class="col-3">
+            <img class="img-fluid shadow-1-strong rounded"
+              src=""
+              alt="user image" />
+          </div>
+
+          <div class="col-9">
+            <p class="mb-2">
+              Ajouté par <strong>
+                {{ figure.createdBy.firstname }}
+                {{ figure.createdBy.lastname }}
+              </strong>
+            </p>
+            <a href="#" class="text-dark">
+              <i class="fab fa-facebook-f me-1"></i>
+            </a>
+            <a href="#" class="text-dark">
+              <i class="fab fa-twitter me-1"></i>
+            </a>
+            <a href="#" class="text-dark">
+              <i class="fab fa-linkedin me-1"></i>
+            </a>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Distinctio est ab iure inventore dolorum consectetur? Molestiae
+              aperiam atque quasi consequatur aut? Repellendus alias dolor ad
+              nam, soluta distinctio quis accusantium!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <a class="btn btn-primary" role="button" href="t">
+        Ajouter un commentaire
+      </a>
+    </div>
+  </section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+/*let items = document.querySelectorAll('.carousel .carousel-item')
+
+items.forEach((el) => {
+    const minPerSlide = 4
+    let next = el.nextElementSibling
+    for (var i=1; i<minPerSlide; i++) {
+        if (!next) {
+            // wrap carousel by using first child
+        	next = items[0]
+      	}
+        let cloneChild = next.cloneNode(true)
+        el.appendChild(cloneChild.children[0])
+        next = next.nextElementSibling
+    }
+})/*
+</script>
+{% endblock %}
