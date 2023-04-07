@@ -87,10 +87,13 @@ class FigureController extends AbstractController
 
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
+
+        $comments = $figure->getComments();
     
         return $this->render('figure/figure_show.html.twig', [
             'figure' => $figure,
             'commentForm' => $form->createView(),
+            'comments' => $comments
         ]);
     }
 

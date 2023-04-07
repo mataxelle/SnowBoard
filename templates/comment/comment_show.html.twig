@@ -1,0 +1,20 @@
+<div class="col mx-auto">
+	<h3 class="mb-5">Commentaires</h3>
+
+	{% if comments %}
+		{% for comment in comments %}
+		<div class="row mb-3">
+			<div class="col-4">
+				<p>{{ comment.user.firstname }}</p>
+			</div>
+			<div class="col-8">
+				<div>
+					<p>{{ comment.message }}</p>
+				</div>
+			</div>
+		</div>	
+		{% endfor %}
+	{% else %}
+		<p>Pas de commentaires</p>
+	{% endif %}
+</div>

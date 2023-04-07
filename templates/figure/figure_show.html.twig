@@ -51,7 +51,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="col-10 col-md-8 col-lg-8 mx-auto">
       <div class="border-0">
         {% if figure.images %}
           <div class="lightbox-gallery">
@@ -137,7 +137,7 @@
 
   <section>
     <div class="mb-3">
-    {{ form_start(commentForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
+    {{ form_start(commentForm, {'attr': {'class': 'col-8 mx-auto mb-5'}}) }}
       <div class="mb-3">
 	      {{ form_label(commentForm.message, 'Commentaire') }}
 	      {{ form_widget(commentForm.message, {'attr': {'class': 'form-control'}}) }}
@@ -146,6 +146,12 @@
 	      <input type="submit" class="btn btn-primary" value="Ajouter mon commentaire" formnovalidate>
       </div>
     {{ form_end(commentForm) }}
+    </div>
+  </section>
+
+  <section>
+    <div class="col-8 mx-auto">
+        {% include "comment/comment_show.html.twig" %}
     </div>
   </section>
 {% endblock %}
