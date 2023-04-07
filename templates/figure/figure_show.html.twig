@@ -136,11 +136,17 @@
   </div>
 
   <section>
-    <div class="col-lg-8 col-md-10 mx-auto">
-      <a class="btn btn-primary" role="button" href="t">
-        Ajouter un commentaire
-      </a>
-    </div>
+    <div class="mb-3">
+   {{ form_start(commentForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
+<div class="mb-3">
+	{{ form_label(commentForm.message, 'Commentaire') }}
+	{{ form_widget(commentForm.message, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="mb-3">
+	<input type="submit" class="btn btn-primary" value="Ajouter mon commentaire" formnovalidate>
+</div>
+{{ form_end(commentForm) }}
+</div>
   </section>
 {% endblock %}
 
