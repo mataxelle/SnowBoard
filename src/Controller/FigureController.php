@@ -6,8 +6,8 @@ use App\Entity\Comment;
 use App\Entity\Figure;
 use App\Form\CommentFormType;
 use App\Form\FigureFormType;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,7 +60,7 @@ class FigureController extends AbstractController
     }
 
     #[Route('/figure/{slug}', name: 'figure_show')]
-    public function figure(?Figure $figure, Request $request, EntityManagerInterface $entityManagerInterface, UserRepository $userRepository): Response
+    public function figure(?Figure $figure, Request $request, EntityManagerInterface $entityManagerInterface, PaginatorInterface $paginationInterface): Response
     {
         if (!$figure) {
             return $this->redirectToRoute('home');
@@ -88,7 +88,8 @@ class FigureController extends AbstractController
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
-        $comments = $figure->getComments();
+        $data = $figure->getComments();
+        $comments = $paginationInterface->paginate($data, $request->query->getInt('page', 1), 3);
     
         return $this->render('figure/figure_show.html.twig', [
             'figure' => $figure,
