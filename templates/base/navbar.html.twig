@@ -24,7 +24,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
-              href="#"
+              href="/profile/"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -32,7 +32,7 @@
             </a>
             <ul class="dropdown-menu">
               {% if app.user %}
-                <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                <li><a class="dropdown-item" href="/profile/{{app.user.id}}">Mon compte</a></li>
                 <li><a class="dropdown-item" href="/logout">Deconnexion</a></li>
               {% elseif app.user is null %}
                 <li><a class="dropdown-item" href="/login">Connexion</a></li>
