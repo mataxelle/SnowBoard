@@ -165,7 +165,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imageProfile;
     }
 
-    public function setImageProfile(string $imageProfile): self
+    public function setImageProfile(?string $imageProfile): self
     {
         $this->imageProfile = $imageProfile;
 
@@ -177,7 +177,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imageProfileFile;
     }
 
-    public function setImageProfileFile(File $imageProfile = null)
+    public function setImageProfileFile(?File $imageProfile = null)
     {
         $this->imageProfileFile = $imageProfile;
 

@@ -23,7 +23,8 @@ class RegistrationFormType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('imageProfileFile', VichFileType::class, [
                 'required' => false,
-                'data_class' => null
+                'data_class' => null,
+                'empty_data' => ''
             ])
             ->add('email', EmailType::class)
             ->add('password', RepeatedType::class, [
