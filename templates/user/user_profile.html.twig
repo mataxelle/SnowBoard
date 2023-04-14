@@ -6,12 +6,12 @@
 {% block body %}
 	<h1 class="text-center my-5">Profile</h1>
 
-	<div class="card mb-3 mx-auto" style="max-width: 600px; height: 400px">
-		<div class="row g-0">
-			<div class="col-md-4">
-				<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile">
+	<div class="card mb-3 mx-auto card w-75" style="height: 400px">
+		<div class="row g-0" style="margin: auto 0px;">
+			<div class="col-md-5 text-center">
+				<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-7">
 				<div class="card-body">
 					<h5 class="card-title">{{ app.user.firstname }}
 						{{ app.user.lastname }}</h5>
@@ -24,12 +24,12 @@
 							{{ app.user.updatedAt|date('d/m/Y') }}</small>
 					</p>
 				</div>
-			</div>
-			<div class="row">
+				<div class="row">
 				<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-					Spprimer
+					Supprimer
 				</button>
-				<a href="/profile/{{app.user.id}}/update" class="col btn btn-primary">Modifier</a>
+				<a href="/profile/{{app.user.id}}/edit" class="col btn btn-primary">Modifier</a>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -46,7 +46,6 @@
 					...
 				</div>
 				<div class="modal-footer">
-
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
 					<a href="/profile/{{app.user.id}}/delete" class="btn btn-danger" role="button">Supprimer</a>
 				</div>
@@ -54,15 +53,15 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col s12 m12 l8 offset-l2">
-			<a href="/add">Ajouter une figure</a>
-		</div>
+	<div class="row mb-3">
+		<h4>
+			<a href="/add" role="button" class="btn btn-lg btn-primary mt-5">Ajouter une figure</a>
+		</h4>
 	</div>
 
 	<div class="row">
 		<div class="col">
-			<h3>Mes figure ({{ app.user.figures|length }})</h3>
+			<h3>Mes figures ({{ app.user.figures|length }})</h3>
 			<div>
 				{% if app.user.figures is not null %}
 					{% for figure in app.user.figures %}

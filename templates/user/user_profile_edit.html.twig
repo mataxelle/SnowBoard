@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5">Modification de compte</h1>
+
+    
+    <div class="col-6 offset-3">
+        {% include "includes/forms/userProfileEditForm.html.twig" %}
+    </div>
+{% endblock %}
