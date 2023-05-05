@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+namespace App\Service;
 
 use \Mailjet\Resources;
 
@@ -10,12 +10,14 @@ class Mailjet
     private $api_key_private = "5bf38e53a6a07ccd773063829440cb51";
 
     public function sendEmail($emailTo, $name, $subject, $content) {
+        var_dump('%env(EMAIL_ADMIN)%');
+        
         $mj = new \Mailjet\Client($this->api_key, $this->api_key_private, true,['version' => 'v3.1']);
 $body = [
     'Messages' => [
         [
             'From' => [
-                'Email' => "kadance9720@gmail.com",
+                'Email' => "",
                 'Name' => "SnowBoard"
             ],
             'To' => [

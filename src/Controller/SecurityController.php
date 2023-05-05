@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Service\Mailjet;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +37,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/register', name: 'register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Mailjet $mailjet): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -60,9 +61,12 @@ class SecurityController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+            
 
-            return $this->redirectToRoute('home');
+            $name = $user->getFirstname();
+            $mailjet->sendEmail($user->getEmail(), $name, 'Bienvenue', "Salut $name!! Ton inscription sera validé en cliquant sur le bouton çi-dessous !");
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/register.html.twig', [

@@ -15,22 +15,15 @@ class MailerService
         $this->mailer = $mailer;
     }
 
-    public function sendEmail(
-        string $from,
-        string $to,
-        string $subject,
-        string $template,
-        array $context
-    ): void
+    public function sendEmail(): void
     {
-        $subject = 'Validez votre inscription !';
-        $content = '<p>Votre lien de confirmation d\'inscripetion</p>';
-        $email = (new TemplatedEmail())
-            ->from($from)
-            ->to($to)
-            ->subject($subject)
-            ->htmlTemplate("emails/$template.html.twig")
-            ->html($content);
+        
+        $email = (new Email())
+            ->from('')
+            ->to('')
+            ->subject('1Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
 
         $this->mailer->send($email);
     }
