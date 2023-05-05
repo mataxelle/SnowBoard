@@ -15,6 +15,8 @@ class UserController extends AbstractController
     #[Route('/profile/{id}', name: 'user_profile')]
     public function profile(User $user): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         return $this->render('user/user_profile.html.twig', [
             'user' => $user,
         ]);
@@ -23,6 +25,8 @@ class UserController extends AbstractController
     #[Route('/profile/{id}/edit', name: 'user_profile_edit')]
     public function edit(User $user, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $form = $this->createForm(UserProfileEditFormType::class, $user);
         
         $form->handleRequest($request);

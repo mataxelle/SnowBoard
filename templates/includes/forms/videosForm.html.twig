@@ -1,0 +1,36 @@
+{% block videos_widget %}
+ 
+<ul id="videos-fields-list" data-prototype="{{ form_widget(figureCreateForm.videos.vars.prototype)|e }}" data-widget-tags="{{ '<li></li>'|e }}"
+    data-widget-counter="{{ figureCreateForm.videos|length }}">
+    {% for key,video in figureCreateForm.videos %}
+    {{ form_widget(video) }}
+    {% endfor %}
+</ul>
+<button type="button" class="add-another-collection" data-list-selector="#images-fields-list">Ajouter une video</button>
+{% endblock %}
+
+{% block javascripts %}
+
+	<script>
+	jQuery(document).ready(function () {
+    jQuery('.add-another-collection').click(function (e) {
+        var list = $("#videos-fields-list");
+        var counter = list.data('widget-counter') | list.children().length;
+        var newWidget = list.attr('data-prototype');
+        newWidget = newWidget.replace(/__name__/g, counter);
+        counter++;
+        list.data('widget-counter', counter);
+
+        var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+        newElem.appendTo(list);
+        newElem.append('<a href="#" class="remove-tag" style="color: darkred">remove</a>');
+        $('.remove-tag').click(function(e) {
+            e.preventDefault();
+
+            $(this).parent().remove();
+
+        });
+    });
+});
+	</script>
+{% endblock %}

@@ -9,7 +9,11 @@
 	<div class="card mb-3 mx-auto card w-75" style="height: 400px">
 		<div class="row g-0" style="margin: auto 0px;">
 			<div class="col-md-5 text-center">
-				<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+				{% if app.user.imageProfile is not null %}
+					<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+				{% else %}
+					<img src="/assets/images/snow1.jpg" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+				{% endif %}
 			</div>
 			<div class="col-md-7">
 				<div class="card-body">

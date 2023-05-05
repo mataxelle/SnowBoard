@@ -26,6 +26,8 @@ class FigureController extends AbstractController
     #[Route('/add', name: 'figure_add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $figure = new Figure();
         $form = $this->createForm(FigureFormType::class, $figure);
 
@@ -45,6 +47,14 @@ class FigureController extends AbstractController
             foreach ($images as $img){
                 $img->setFigure($figure);
                 $figure->addImage($img);
+                
+            }
+
+            $videos = $form->getData()->getVideos();
+                
+            foreach ($videos as $video){
+                $video->setFigure($figure);
+                $figure->addImage($video);
                 
             }
 
