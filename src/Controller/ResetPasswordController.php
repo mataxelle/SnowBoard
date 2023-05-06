@@ -119,7 +119,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('reset_password/reset.html.twig', [
@@ -157,7 +157,7 @@ class ResetPasswordController extends AbstractController
         $name = $user->getFirstname();
         
         $tokenReset = $resetToken->getToken();
-        $route = "<h1>Hi!</h1>
+        $route = "<h1>Hi $name!</h1>
         <p>To reset your password, please visit the following link</p>
         <a href=\"https://localhost:8000/reset-password/reset/$tokenReset\">Reset password</a>
         <p>This link will expire in 1 hour.</p>
