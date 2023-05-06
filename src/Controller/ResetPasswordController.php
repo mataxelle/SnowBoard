@@ -7,13 +7,10 @@ use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
 use App\Service\Mailjet;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -157,21 +154,22 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_check_email');
         }
 
-        /*$email = (new TemplatedEmail())
-            ->from(new Address('kadance972@hotmail.com', 'No reply'))
-            ->to($user->getEmail())
-            ->subject('Your password reset request')
-            ->htmlTemplate('reset_password/email.html.twig')
-            ->context([
-                'resetToken' => $resetToken,
-            ])
-        ;
-
-        $mailer->send($email);*/
-        //kadance972@hotmail.com
-
         $name = $user->getFirstname();
-        $mailjet->sendEmail($user->getEmail(), $name, 'Hello', $resetToken, 4785528);
+        
+        $tokenReset = $resetToken->getToken();
+        $route = "<h1>Hi!</h1>
+        <p>To reset your password, please visit the following link</p>
+        <a href=\"https://localhost:8000/reset-password/reset/$tokenReset\">Reset password</a>
+        <p>This link will expire in 1 hour.</p>
+        
+        <p>Cheers!</p>";
+        
+        /*//// Try to use twig template
+        $router = $this->render('reset_password/email.html.twig', [
+            'resetToken' => $resetToken,
+        ]);*/
+        
+        $mailjet->sendEmail($user->getEmail(), $name, 'Hello', $route, 4785528);
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
