@@ -64,7 +64,8 @@ class SecurityController extends AbstractController
             
 
             $name = $user->getFirstname();
-            $mailjet->sendEmail($user->getEmail(), $name, 'Bienvenue', "Salut $name!! Ton inscription sera validé en cliquant sur le bouton çi-dessous !");
+            
+            $mailjet->sendEmail($user->getEmail(), $name, 'Bienvenue', "Salut $name!! Ton inscription sera validé en cliquant sur le bouton çi-dessous !", 4769102);
 
             return $this->redirectToRoute('app_login');
         }
