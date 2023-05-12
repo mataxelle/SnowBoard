@@ -4,8 +4,12 @@ namespace App\Entity;
 
 use App\Repository\VideoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VideoRepository::class)]
+#[Vich\Uploadable]
 class Video
 {
     #[ORM\Id]
@@ -15,6 +19,14 @@ class Video
 
     #[ORM\Column(length: 255)]
     private ?string $url = null;
+
+    #[Vich\UploadableField(mapping: 'video_figure', fileNameProperty: 'url')]
+    #[Assert\File(
+        mimeTypes: 'video/mp4',
+        maxSize: '250M',
+        maxSizeMessage: 'Please upload a valid video, allowed maximum size is {{ limit }} {{ suffix }}.',
+    )]
+    private ?File $videoFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'videos')]
     private ?Figure $figure = null;
@@ -42,6 +54,24 @@ class Video
         $this->url = $url;
 
         return $this;
+    }
+
+    public function getVideoFile()
+    {
+        return $this->videoFile;
+    }
+
+    public function setVideoFile(File $url= null)
+    {
+        $this->videoFile = $url;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($url) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTimeImmutable('now');
+        }
     }
 
     public function getFigure(): ?Figure

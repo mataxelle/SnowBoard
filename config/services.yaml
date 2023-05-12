@@ -6,6 +6,7 @@
 parameters:
     app.path.image_profile: /uploads/images/image_profile
     app.path.image_figure: /uploads/images/image_figure
+    app.path.video_figure: /uploads/videos/video_figure
     app.mailjet_key: '%env(APP_MAILJET_KEY)%'
     app.mailjet_secret_key: '%env(APP_MAILJET_SECRET_KEY)%'
     app.email_admin: '%env(APP_EMAIL_ADMIN)%'

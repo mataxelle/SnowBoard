@@ -13,7 +13,7 @@ class VideoFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('VideoFile', VichFileType::class, [
+        ->add('videoFile', VichFileType::class, [
             'required' => false,
             'download_uri' => true
         ])

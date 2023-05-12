@@ -11,3 +11,8 @@ vich_uploader:
       uri_prefix: '%app.path.image_figure%'
       upload_destination: "%kernel.project_dir%/public%app.path.image_figure%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    video_figure:
+      uri_prefix: '%app.path.video_figure%'
+      upload_destination: "%kernel.project_dir%/public%app.path.video_figure%"
+      namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

@@ -23,10 +23,10 @@ class FigureController extends AbstractController
         ]);
     }
 
-    #[Route('/add', name: 'figure_add')]
+    #[Route('/figure/add', name: 'figure_add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        $this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_USER']);
+        //$this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_USER']);
         
         $figure = new Figure();
         $form = $this->createForm(FigureFormType::class, $figure);
@@ -35,9 +35,9 @@ class FigureController extends AbstractController
 
         $figure->setUpdatedAt(new \DateTimeImmutable());
         $figure->setCreatedBy($this->getUser());
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
+            dump($figure);
             if (!$figure->getCreatedAt()) {
                 $figure->setCreatedAt(new \DateTimeImmutable());
             }
@@ -54,14 +54,14 @@ class FigureController extends AbstractController
                 
             foreach ($videos as $video){
                 $video->setFigure($figure);
-                $figure->addImage($video);
+                $figure->addVideo($video);
                 
             }
-
+            
             $entityManagerInterface->persist($figure);
             $entityManagerInterface->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/figure_create.html.twig', [

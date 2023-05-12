@@ -6,14 +6,14 @@
     {{ form_widget(video) }}
     {% endfor %}
 </ul>
-<button type="button" class="add-another-collection" data-list-selector="#images-fields-list">Ajouter une video</button>
+<button type="button" class="add-another-video" data-list-selector="#videos-fields-list">Ajouter une video</button>
 {% endblock %}
 
 {% block javascripts %}
 
 	<script>
 	jQuery(document).ready(function () {
-    jQuery('.add-another-collection').click(function (e) {
+    jQuery('.add-another-video').click(function (e) {
         var list = $("#videos-fields-list");
         var counter = list.data('widget-counter') | list.children().length;
         var newWidget = list.attr('data-prototype');

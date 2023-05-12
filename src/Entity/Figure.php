@@ -34,6 +34,10 @@ class Figure
     #[ORM\JoinColumn(nullable: false)]
     private ?User $createdBy = null;
 
+    #[ORM\ManyToOne(inversedBy: 'figures')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $updatedBy = null;
+
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -119,6 +123,18 @@ class Figure
     public function setCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function getUpdatedBy(): ?User
+    {
+        return $this->updatedBy;
+    }
+
+    public function setUpdatedBy(?User $updatedBy): self
+    {
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
