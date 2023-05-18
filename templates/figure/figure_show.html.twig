@@ -53,7 +53,7 @@
   <div class="row">
     <div class="col-10 col-md-8 col-lg-8 mx-auto">
       <div class="border-0">
-        {% if figure.images %}
+        {% if figure.images|length > 0 %}
           <div class="lightbox-gallery">
             <div class="container">
               <div class="row images">
@@ -72,9 +72,34 @@
             </div>
           </div>
         {% else %}
-          <img class="h-100"
+          <p>Pas d'image</p>
+          <div class="col-6">
+            <img class="img-fluid"
             src="/assets/images/snow1.jpg"
             alt="image de code" />
+          </div>
+        {% endif %}
+
+        {% if figure.videos|length > 0 %}
+          <div class="lightbox-gallery">
+            <div class="container">
+              <div class="row images">
+                {% for video in figure.videos %}
+                  <div class="col-md-4">
+                    <a href="{{ vich_uploader_asset(video, 'videoFile') }}"
+                      data-toggle="lightbox"
+                      data-gallery="example-gallery">
+                      <video class="figure-thumbnail">
+                        <source src="{{ vich_uploader_asset(video, 'videoFile') }}" type="video/mp4">
+                      </video>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <p>Pas de videos</p>
         {% endif %}
 
         <hr />
