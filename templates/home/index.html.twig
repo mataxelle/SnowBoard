@@ -15,7 +15,7 @@
 
     {% if app.user %}
 			<h4>
-				<a href="figure/add" role="button" class="btn btn-lg btn-primary mt-5">Ajouter un article</a>
+				<a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary mt-5">Ajouter un article</a>
 			</h4>
 		{% endif %}
 
@@ -36,7 +36,7 @@
 					<div class="card h-100">
 						<div class="card-body">
 							<h5 class="card-title">{{ figure.name }}</h5>
-							<a href="/figure/{{ figure.slug }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
+							<a href="{{ path('figure_show', {'slug' : figure.slug}) }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
 							<p class="card-text d-flex justify-content-end">
 								<small class="text-muted">
 									<em>Publié le

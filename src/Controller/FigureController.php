@@ -26,8 +26,6 @@ class FigureController extends AbstractController
     #[Route('/figure/add', name: 'figure_add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        //$this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_USER']);
-        
         $figure = new Figure();
         $form = $this->createForm(FigureFormType::class, $figure);
 
@@ -111,8 +109,6 @@ class FigureController extends AbstractController
     #[Route('/figure/{id}/delete', name: 'figure_delete')]
     public function delete(Figure $figure, EntityManagerInterface $entityManagerInterface): Response
     {
-        $this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_USER']);
-        
         if ($figure) {
             $entityManagerInterface->remove($figure);
             $entityManagerInterface->flush();

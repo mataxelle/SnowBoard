@@ -32,7 +32,7 @@
 				<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					Supprimer
 				</button>
-				<a href="/profile/{{app.user.id}}/edit" class="col btn btn-primary">Modifier</a>
+				<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col btn btn-primary">Modifier</a>
 			</div>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<a href="/profile/{{app.user.id}}/delete" class="btn btn-danger" role="button">Supprimer</a>
+					<a href="{{ path('user_profile_delete', {'id' : app.user.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
 				</div>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 
 	<div class="row mb-3">
 		<h4>
-			<a href="/add" role="button" class="btn btn-lg btn-primary mt-5">Ajouter une figure</a>
+			<a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary mt-5">Ajouter une figure</a>
 		</h4>
 	</div>
 
