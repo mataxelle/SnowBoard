@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[UniqueEntity('email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[Vich\Uploadable]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serializable
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -292,25 +292,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     public function __toString(): string
     {
         return $this->firstname;
-    }
-
-    public function serialize()
-    {
-
-        return serialize(array(
-            $this->id,
-            $this->email,
-            $this->password,
-        ));
-    }
-
-    public function unserialize($serialized)
-    {
-
-        list(
-            $this->id,
-            $this->email,
-            $this->password,
-        ) = unserialize($serialized);
     }
 }
