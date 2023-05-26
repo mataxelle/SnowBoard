@@ -55,6 +55,8 @@ class FigureController extends AbstractController
                 
             }
             
+            $figure = $form->getData();
+
             $entityManagerInterface->persist($figure);
             $entityManagerInterface->flush();
 
@@ -88,6 +90,7 @@ class FigureController extends AbstractController
                 $comment->setCreatedAt(new \DateTimeImmutable());
             }
 
+            $comment = $form->getData();
             
             $entityManagerInterface->persist($comment);
             $entityManagerInterface->flush();

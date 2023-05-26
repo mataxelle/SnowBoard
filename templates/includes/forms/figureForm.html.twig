@@ -1,21 +1,23 @@
 {{ form_start(figureCreateForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
-<div class="mb-3">
+<div class="input-field mb-3">
 	{{ form_label(figureCreateForm.name, 'Titre') }}
 	{{ form_widget(figureCreateForm.name, {'attr': {'class': 'form-control'}}) }}
+	<span class="error">{{ form_errors(figureCreateForm.name) }}</span>
 </div>
-<div class="mb-3">
+<div class="input-field mb-3">
 	{{ form_label(figureCreateForm.slug, 'Slug') }}
 	{{ form_widget(figureCreateForm.slug, {'attr': {'class': 'form-control'}}) }}
 </div>
-<div class="mb-3">
+<div class="input-field mb-3">
 	{{ form_label(figureCreateForm.category, 'Catégorie') }}
 	{{ form_widget(figureCreateForm.category, {'attr': {'class': 'form-control'}}) }}
 </div>
-<div>
+<div class="input-field">
 	{{ form_label(figureCreateForm.description, 'Description') }}
 	{{ form_widget(figureCreateForm.description, {'attr': {'class': 'form-control'}}) }}
+	<span class="error">{{ form_errors(figureCreateForm.description) }}</span>
 </div>
-<div class="mb-3">
+<div class="input-field mb-3">
     {% include "includes/forms/imagesForm.html.twig" %}
 </div>
 <div class="mb-3">

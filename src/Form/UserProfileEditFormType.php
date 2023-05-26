@@ -15,14 +15,20 @@ class UserProfileEditFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
+            ->add('firstname', TextType::class, [
+                'required' => false
+            ])
+            ->add('lastname', TextType::class, [
+                'required' => false
+            ])
             ->add('imageProfileFile', VichFileType::class, [
                 'required' => false,
                 'data_class' => null,
                 'empty_data' => ''
             ])
-            ->add('email', EmailType::class);
+            ->add('email', EmailType::class, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

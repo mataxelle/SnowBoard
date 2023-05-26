@@ -163,9 +163,10 @@
   <section>
     <div class="mb-3">
     {{ form_start(commentForm, {'attr': {'class': 'col-8 mx-auto mb-5'}}) }}
-      <div class="mb-3">
+      <div class="input-field mb-3">
 	      {{ form_label(commentForm.message, 'Commentaire') }}
 	      {{ form_widget(commentForm.message, {'attr': {'class': 'form-control'}}) }}
+        <span class="error">{{ form_errors(commentForm.message) }}</span>
       </div>
       <div class="mb-3">
 	      <input type="submit" class="btn btn-primary" value="Ajouter mon commentaire" formnovalidate>

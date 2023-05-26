@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\PrePersist;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FigureRepository::class)]
 class Figure
@@ -18,6 +18,10 @@ class Figure
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
+    #[Assert\Length(
+        min: 2,
+        max: 180)]
+    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
@@ -28,6 +32,7 @@ class Figure
     private ?Category $category = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'figures')]

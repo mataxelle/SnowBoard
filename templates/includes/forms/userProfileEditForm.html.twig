@@ -1,19 +1,22 @@
 {{ form_start(editForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
-<div class="mb-3">
+<div class="input-field mb-3">
 	{{ form_label(editForm.firstname, 'Prénom') }}
 	{{ form_widget(editForm.firstname, {'attr': {'class': 'form-control'}}) }}
+	<span class="error">{{ form_errors(editForm.firstname) }}</span>
 </div>
-<div class="mb-3">
+<div class="input-field mb-3">
 	{{ form_label(editForm.lastname, 'Nom') }}
 	{{ form_widget(editForm.lastname, {'attr': {'class': 'form-control'}}) }}
+	<span class="error">{{ form_errors(editForm.lastname) }}</span>
 </div>
 <div class="mb-3">
 	{{ form_label(editForm.imageProfileFile) }}
 	{{ form_widget(editForm.imageProfileFile, {'attr': {'class': 'form-control'}}) }}
 </div>
-<div>
+<div class="input-field">
 	{{ form_label(editForm.email, 'Email') }}
 	{{ form_widget(editForm.email, {'attr': {'class': 'form-control'}}) }}
+	<span class="error">{{ form_errors(editForm.email) }}</span>
 </div>
 <div class="mb-3">
 	<input type="submit" class="btn btn-primary" value="Modifier" formnovalidate>

@@ -59,6 +59,8 @@ class SecurityController extends AbstractController
                 $user->setCreatedAt(new \DateTimeImmutable());
             }
 
+            $user = $form->getData();
+
             $entityManager->persist($user);
             $entityManager->flush();
             
