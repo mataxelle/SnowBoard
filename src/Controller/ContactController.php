@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactFormType;
+use App\Service\Mailjet;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function contact(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function contact(Request $request, EntityManagerInterface $entityManagerInterface, Mailjet $mailjet): Response
     {
         $contact = new Contact();
 
@@ -35,6 +36,15 @@ class ContactController extends AbstractController
 
             $entityManagerInterface->persist($contact);
             $entityManagerInterface->flush();
+
+            //var_dump($user->getEmail());die;
+            $mailjet->getEmailMessage(
+                $contact->getEmail(),
+                $contact->getFullName(),
+                $contact->getSubject(),
+                $contact->getMessage(),
+                4838475
+            );
 
             $this->addFlash(
                 'message',
