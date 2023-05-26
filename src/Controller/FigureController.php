@@ -99,7 +99,7 @@ class FigureController extends AbstractController
         }
 
         $data = $figure->getComments();
-        $comments = $paginationInterface->paginate($data, $request->query->getInt('page', 1), 3);
+        $comments = $paginationInterface->paginate($data, $request->query->getInt('page', 1), 10);
     
         return $this->render('figure/figure_show.html.twig', [
             'figure' => $figure,

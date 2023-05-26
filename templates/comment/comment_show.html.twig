@@ -3,16 +3,19 @@
 
 	{% if comments %}
 		{% for comment in comments %}
-		<div class="row mb-3">
+		<div class="row mb-3 comments">
 			<div class="col-4">
-				<p>{{ comment.user.firstname }}</p>
-			</div>
-			<div class="col-8">
-				<div>
-					<p>{{ comment.message }}</p>
+			    <div class="row">
+				    <img src="{{ vich_uploader_asset(comment.user, 'imageProfileFile') }}" class="col-6 d-flex align-items-center img-fluid rounded-start" alt="user image profile" style="width: 5rem">
+				    <p class="col-6 d-flex align-items-center">{{ comment.user.firstname }}</p>
 				</div>
 			</div>
-		</div>	
+			<div class="col-8">
+				<div class="row">
+					<p class="d-flex align-items-center">{{ comment.message }}</p>
+				</div>
+			</div>
+		</div>
 		{% endfor %}
 	{% else %}
 		<p>Pas de commentaires</p>

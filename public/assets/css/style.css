@@ -75,3 +75,15 @@
   border: 3px solid green;
   margin-top: 10px;
 }
+
+div .comments {
+  border-radius: 6px;
+}
+
+div .comments:nth-child(odd) {
+  background-color: #d0e1f9;
+}
+
+div .comments:nth-child(even) {
+  background-color: #fff;
+}
