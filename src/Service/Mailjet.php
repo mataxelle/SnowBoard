@@ -79,7 +79,7 @@ class Mailjet
             ]
         ];
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-        dump($response, $response->getData());die;
+        //dump($response, $response->getData());die;
         $response->success() && var_dump($response->getData());
     }
 }

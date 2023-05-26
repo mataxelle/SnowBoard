@@ -37,7 +37,6 @@ class ContactController extends AbstractController
             $entityManagerInterface->persist($contact);
             $entityManagerInterface->flush();
 
-            //var_dump($user->getEmail());die;
             $mailjet->getEmailMessage(
                 $contact->getEmail(),
                 $contact->getFullName(),
