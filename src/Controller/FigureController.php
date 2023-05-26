@@ -35,7 +35,6 @@ class FigureController extends AbstractController
         $figure->setCreatedBy($this->getUser());
         
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($figure);
             if (!$figure->getCreatedAt()) {
                 $figure->setCreatedAt(new \DateTimeImmutable());
             }

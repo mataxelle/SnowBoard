@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1 class="text-center my-5">Contact</h1>
+
+   <div class="col-4 offset-4">
+		{% for message in app.flashes('message') %}
+            <div class="alert alert-succes" role="alert">
+                <P>{{ message }}</p>
+            </div>
+        {% endfor %}
+	</div>
+
+    <div class="col-6 offset-3">
+        {% include "includes/forms/contactForm.html.twig" %}
+    </div>
+{% endblock %}

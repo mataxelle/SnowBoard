@@ -1,0 +1,24 @@
+{{ form_start(contactCreateForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
+<div class="input-field mb-3">
+	{{ form_label(contactCreateForm.fullName, 'Nom / Prénom') }}
+	{{ form_widget(contactCreateForm.fullName, {'attr': {'class': 'form-control'}}) }}
+    <span class="error">{{ form_errors(contactCreateForm.fullName) }}</span>
+</div>
+<div class="input-field mb-3">
+	{{ form_label(contactCreateForm.email, 'Email') }}
+	{{ form_widget(contactCreateForm.email, {'attr': {'class': 'form-control'}}) }}
+    <span class="error">{{ form_errors(contactCreateForm.email) }}</span>
+</div>
+<div class="input-field mb-3">
+	{{ form_label(contactCreateForm.subject, 'Objet') }}
+	{{ form_widget(contactCreateForm.subject, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="input-field mb-3">
+	{{ form_label(contactCreateForm.message, 'Message') }}
+	{{ form_widget(contactCreateForm.message, {'attr': {'class': 'form-control'}}) }}
+    <span class="error">{{ form_errors(contactCreateForm.message) }}</span>
+</div>
+<div class="input-field mb-3">
+	<input type="submit" class="btn btn-primary" value="Envoyer" formnovalidate>
+</div>
+{{ form_end(contactCreateForm) }}

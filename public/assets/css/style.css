@@ -66,3 +66,12 @@
 .carousel-inner .carousel-item-start {
   transform: translateX(0);
 }
+
+.flash-message {
+  text-align: center;
+}
+
+.flash-message{
+  border: 3px solid green;
+  margin-top: 10px;
+}
