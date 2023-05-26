@@ -50,4 +50,36 @@ class Mailjet
         //dump($response, $response->getData());die;
         $response->success() && var_dump($response->getData());
     }
+
+    public function getEmailMessage($from, $name, $subject, $content, $templateId)
+    {
+
+        $mj = new \Mailjet\Client($this->mailjetKey, $this->mailjetSecretKey, true, ['version' => 'v3.1']);
+        $body = [
+            'Messages' => [
+                [
+                    'From' => [
+                        'Email' => $from,
+                        'Name' => $name
+                    ],
+                    'To' => [
+                        [
+                            'Email' => $this->emailAdmin,
+                            'Name' => ''
+                        ]
+                    ],
+                    'TemplateID' => $templateId,
+                    'TemplateLanguage' => true,
+                    'Subject' => $subject,
+                    'Variables' => [
+                        'fullname' => $name,
+                        'content' => $content,
+                    ]
+                ]
+            ]
+        ];
+        $response = $mj->post(Resources::$Email, ['body' => $body]);
+        //dump($response, $response->getData());die;
+        $response->success() && var_dump($response->getData());
+    }
 }
