@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <a href="{{ path('app_admin_board') }}" class="col-1 d-flex align-items-center">Retour</a>
+        <h1 class="col text-center mt-5 mb-5">liste des commentaires</h1>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="row mb-5">
+                <h5>Commentaires(s)
+                    <span>({{ comments|length }})</span>
+                </h5>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Article</th>
+                    <th>comment</th>
+                    <th>Validé</th>
+                    <th>Ajouté le</th>
+                    <th>Modifié le</th>
+                    <th>Actions</th>
+                </tr>
+                {% set i = 1 %}
+                {% for comment in comments %}
+                    <tr class="hoverable">
+                        <td>{{ i }}</td>
+                        <td>{{ comment.figure.name }}</td>
+                        <td>{{ comment.message|u.truncate(10, '...', false) }}</td>
+                        <td>
+                            <a class="btn btn-dark disabled" href=""><i class="far fa-eye"></i></a>
+                        </td>
+                        <td>{{ comment.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ comment.updatedAt|date('d/m/Y') }}</td>
+                        <td>
+                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+					            <i class="fas fa-trash"></i>
+				            </button>
+                        </td>
+                    </tr>
+                {% set i = i+1 %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer le commentaire</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					<a href="" class="btn btn-danger" role="button">Supprimer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -11,10 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/contact', name: 'app_contact_')]
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
-    public function contact(Request $request, EntityManagerInterface $entityManagerInterface, Mailjet $mailjet): Response
+    #[Route('', name: 'add')]
+    public function add(Request $request, EntityManagerInterface $entityManagerInterface, Mailjet $mailjet): Response
     {
         $contact = new Contact();
 
@@ -61,6 +62,18 @@ class ContactController extends AbstractController
         return $this->render('contact/contact_create.html.twig', [
             'contactCreateForm' => $form->createView(),
             'user'
+        ]);
+    }
+
+    #[Route('/{id}', name: 'show')]
+    public function contact(?Contact $contact): Response
+    {
+        if (!$contact) {
+            return $this->redirectToRoute('app_admin_contacts');
+        }
+
+         return $this->render('contact/contact_show.html.twig', [
+            'contact' => $contact,
         ]);
     }
 }

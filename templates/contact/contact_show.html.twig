@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Message</h1>
+
+    <div class="row">
+        <div class="col">
+            <div class="card border-0">
+					<div class="d-flex justify-content-end">
+						<span class="text-muted">Reçu le : {{ contact.createdAt|date('d/m/Y') }}</span>
+					</div>
+
+					<hr>
+
+					<div class="card-body">
+                        <p>De : {{ contact.fullname}}</p>
+						<p class="card-text mt-4">Message : {{ contact.message }}</p>
+					</div>
+
+					<hr>
+				</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

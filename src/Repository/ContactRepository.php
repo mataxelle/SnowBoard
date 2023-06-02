@@ -39,6 +39,16 @@ class ContactRepository extends ServiceEntityRepository
         }
     }
 
+    public function getContactsCount(): int
+    {
+        $result = $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+        return $result;
+    }
+
 //    /**
 //     * @return Contact[] Returns an array of Contact objects
 //     */
