@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">Tableau de bord</h1>
+
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-4">Il y a
+                        <span>{{ figures }}</span>
+                        articles
+                    </h5>
+                    <a class="btn btn-primary" role="button" href="{{ path('app_admin_figures') }}">Voir les articles</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-4">Il y a
+                        <span>{{ users }}</span>
+                        Utilisateurs
+                    </h5>
+                    <a class="btn btn-primary" role="button" href="{{ path('app_admin_users') }}">Voir les utilisateurs</a>
+                    <a class="btn btn-primary" role="button" href="">Ajouter un utilisateur</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-4">Il y a
+                        <span>{{ comments }}</span>
+                        commentaires
+                    </h5>
+                    <a class="btn btn-primary" role="button" href="{{ path('app_admin_comments') }}">Voir les commentaires</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-4">Il y a
+                        <span>{{ contacts }}</span>
+                        Messages
+                    </h5>
+                    <a class="btn btn-primary" role="button" href="{{ path('app_admin_contacts') }}">Voir les messages</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+             <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-4">Ajouter un article</h5>
+                    <a class="btn btn-primary" role="button" href="{{ path('figure_add') }}">Ajouter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -16,6 +16,11 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Accueil</a>
           </li>
+          {% if app.user and is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ path('app_admin_board') }}">Dashboard</a>
+          </li>
+          {% endif %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"
               href=""
@@ -34,7 +39,7 @@
               {% endif %}
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="{{ path('app_contact') }}">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ path('app_contact_add') }}">Contact</a></li>
         </ul>
       </div>
     </div>

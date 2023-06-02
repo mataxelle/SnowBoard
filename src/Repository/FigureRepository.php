@@ -39,6 +39,16 @@ class FigureRepository extends ServiceEntityRepository
         }
     }
 
+    public function getFiguresCount(): int
+    {
+        $result = $this->createQueryBuilder('f')
+        ->select('count(f.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+
+        return $result;
+    }
+
 //    /**
 //     * @return Figure[] Returns an array of Figure objects
 //     */

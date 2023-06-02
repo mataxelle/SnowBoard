@@ -3,21 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
-use App\Entity\Figure;
-use App\Form\CommentFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CommentController extends AbstractController
 {
-    #[Route('/comment', name: 'comments')]
-    public function index(): Response
+    #[Route('/comment/{id}/delete', name: 'comment_delete')]
+    public function index(EntityManagerInterface $entityManagerInterface, Comment $comment): Response
     {
-        return $this->render('comment/index.html.twig', [
-            'controller_name' => 'CommentController',
-        ]);
+        if ($comment) {
+            $entityManagerInterface->remove($comment);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_admin_comments');
+        }
     }
 }
