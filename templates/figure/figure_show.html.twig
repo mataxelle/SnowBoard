@@ -169,7 +169,12 @@
         <span class="error">{{ form_errors(commentForm.message) }}</span>
       </div>
       <div class="mb-3">
-	      <input type="submit" class="btn btn-primary" value="Ajouter mon commentaire" formnovalidate>
+	      {% if app.user %}
+        <input type="submit" class="btn btn-primary" value="Ajouter mon commentaire" formnovalidate>
+        {% else %}
+        <a class="btn btn-primary" href="{{ path('app_login') }}">Ajouter mon commentaire</a>
+        {% endif %}
+        
       </div>
     {{ form_end(commentForm) }}
     </div>
