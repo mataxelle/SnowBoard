@@ -4,92 +4,91 @@
 {% endblock %}
 
 {% block body %}
-	<h1 class="text-center my-5">Profile</h1>
+	<div class="container">
+		<h1 class="text-center my-5">Profile</h1>
 
-	<div class="card mb-3 mx-auto card w-75" style="height: 400px">
-		<div class="row g-0" style="margin: auto 0px;">
-			<div class="col-md-5 text-center">
-				{% if app.user.imageProfile is not null %}
-					<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
-				{% else %}
-					<img src="/assets/images/snow1.jpg" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
-				{% endif %}
-			</div>
-			<div class="col-md-7">
-				<div class="card-body">
-					<h5 class="card-title">{{ app.user.firstname }}
-						{{ app.user.lastname }}</h5>
-					<p class="card-text">Email :
-						{{ app.user.email }}</p>
-					<p class="card-text">Date d'inscription :
-						{{ app.user.createdAt|date('d/m/Y') }}</p>
-					<p class="card-text">
-						<small class="text-muted">Modifié le :
-							{{ app.user.updatedAt|date('d/m/Y') }}</small>
-					</p>
-				</div>
-				<div class="row">
-				<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-					Supprimer
-				</button>
-				<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col btn btn-primary">Modifier</a>
-			</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer mon compte</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<a href="{{ path('user_profile_delete', {'id' : app.user.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row mb-3">
-		<h4>
-			<a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary mt-5">Ajouter une figure</a>
-		</h4>
-	</div>
-
-	<div class="row">
-		<div class="col">
-			<h3>Mes figures ({{ app.user.figures|length }})</h3>
-			<div>
-				{% if app.user.figures is not null %}
-					{% for figure in app.user.figures %}
-						<div class="col s10 m6 l6">
-							<div class="card hoverable blue-grey darken-1">
-								<div class="card-content white-text">
-									<span class="card-title">{{ figure.name }}</span>
-									<p>{{ figure.updatedAt|date('d/m/Y') }}</p>
-									<div class="card-image">
-										<img class="responsive-img home" width="100%" src="" alt="{{ figure.name }}"/>
-									</div>
-									<p>Prix :{{ figure.name }}€</p>
-								</div>
-								<div class="card-action">
-									<a href="">Plus de détails
-									</div>
-								</div>
+		<div class="row">
+			<div class="col-8 col-md-8 offset-2">
+				<div class="card mb-3 mx-auto" style="border: none">
+					<div class="row" style="padding: 12px">
+						<div class="col-md-5 text-center">
+							{% if app.user.imageProfile is not null %}
+								<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+							{% else %}
+								<img src="/assets/images/snow1.jpg" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+							{% endif %}
+						</div>
+						<div class="col-md-7 text-center">
+							<div class="card-body">
+								<h5 class="card-title">{{ app.user.firstname }}
+									{{ app.user.lastname }}</h5>
+								<p class="card-text">Email :
+									{{ app.user.email }}</p>
+								<p class="card-text">Date d'inscription :
+									{{ app.user.createdAt|date('d/m/Y') }}</p>
+								<p class="card-text">
+									<small class="text-muted">Modifié le :
+										{{ app.user.updatedAt|date('d/m/Y') }}</small>
+								</p>
+								<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+									Supprimer
+								</button>
+								<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col btn btn-primary">Modifier</a>
 							</div>
 						</div>
-					{% endfor %}
-				{% else %}
-					vous n'avez pas encore ajouter de figure.
-				{% endif %}
+					</div>
+				</div>
 			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer mon compte</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+						<a href="{{ path('user_profile_delete', {'id' : app.user.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mb-3">
+			<h4>
+				<a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary mt-5">Ajouter une figure</a>
+			</h4>
+		</div>
+
+		<div class="row g-4 my-5">
+			<h3 class="mb-4">Mes figures ({{ app.user.figures|length }})</h3>
+			{% if app.user.figures is not null %}
+				{% for figure in app.user.figures %}
+					<div class="col-4">
+						<div class="card h-100">
+							<div class="card-body">
+								<h5 class="card-title">{{ figure.name }}</h5>
+								<a href="{{ path('figure_show', {'slug' : figure.slug}) }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
+								<p class="card-text d-flex justify-content-end">
+									<small class="text-muted">
+										<em>Publié le
+											{{ figure.updatedAt|date('d/m/Y') }}</em>
+									</small>
+								</p>
+							</div>
+						</div>
+
+					</div>
+				{% endfor %}
+			{% else %}
+				vous n'avez pas encore ajouter de figure.
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
