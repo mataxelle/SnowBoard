@@ -31,13 +31,9 @@ class FigureController extends AbstractController
 
         $form->handleRequest($request);
 
-        $figure->setUpdatedAt(new \DateTimeImmutable());
         $figure->setCreatedBy($this->getUser());
         
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$figure->getCreatedAt()) {
-                $figure->setCreatedAt(new \DateTimeImmutable());
-            }
 
             $images = $form->getData()->getImages();
                 
@@ -80,15 +76,10 @@ class FigureController extends AbstractController
 
         $form->handleRequest($request);
 
-        $comment->setUpdatedAt(new \DateTimeImmutable());
         $comment->setFigure($figure);
         $comment->setUser($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            if (!$comment->getCreatedAt()) {
-                $comment->setCreatedAt(new \DateTimeImmutable());
-            }
 
             $comment = $form->getData();
             

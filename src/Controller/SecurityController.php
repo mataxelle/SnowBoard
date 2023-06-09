@@ -44,7 +44,6 @@ class SecurityController extends AbstractController
         
         $form->handleRequest($request);
 
-        $user->setUpdatedAt(new \DateTimeImmutable());
         $user->setRoles(['ROLE_USER']);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,12 +54,7 @@ class SecurityController extends AbstractController
                 )
             );
 
-            if (!$user->getCreatedAt()) {
-                $user->setCreatedAt(new \DateTimeImmutable());
-            }
-
             $user = $form->getData();
-
             $entityManager->persist($user);
             $entityManager->flush();
             

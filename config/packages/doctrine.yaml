@@ -13,6 +13,7 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
+                type: attribute # Needs to be set to attribute for PHP 8 attributes to work
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
