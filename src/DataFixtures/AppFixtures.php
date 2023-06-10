@@ -74,7 +74,6 @@ class AppFixtures extends Fixture
                 $figure = new Figure();
 
                 $figure->setName($faker->name())
-                    ->setSlug($faker->slug())
                     ->setDescription($faker->text(350))
                     ->setCreatedBy($admin)
                     ->setCategory($categorie);

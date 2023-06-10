@@ -27,8 +27,6 @@ class UserController extends AbstractController
         
         $form->handleRequest($request);
 
-        $user->setUpdatedAt(new \DateTimeImmutable());
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $form->getData();

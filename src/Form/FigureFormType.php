@@ -20,7 +20,6 @@ class FigureFormType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => false
             ])
-            ->add('slug', TextType::class)
             ->add('description', TextareaType::class, [
                 'required' => false
             ])
