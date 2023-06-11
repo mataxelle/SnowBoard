@@ -13,9 +13,9 @@
 					<div class="row" style="padding: 12px">
 						<div class="col-md-5 text-center">
 							{% if app.user.imageProfile is not null %}
-								<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+								<img src="{{ vich_uploader_asset(app.user, 'imageProfileFile') }}" class="img-fluid" alt="user image profile" style="height: 15rem; border-radius: 50%;">
 							{% else %}
-								<img src="/assets/images/snow1.jpg" class="img-fluid rounded-start" alt="user image profile" style="height: 15rem">
+								<img src="/assets/images/snow1.jpg" class="img-fluid" alt="user image profile" style="height: 15rem; border-radius: 50%;">
 							{% endif %}
 						</div>
 						<div class="col-md-7 text-center">
@@ -30,10 +30,10 @@
 									<small class="text-muted">Modifié le :
 										{{ app.user.updatedAt|date('d/m/Y') }}</small>
 								</p>
-								<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+								<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
 									Supprimer
 								</button>
-								<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col btn btn-primary">Modifier</a>
+								<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col btn btn-success">Modifier</a>
 							</div>
 						</div>
 					</div>
@@ -41,12 +41,12 @@
 			</div>
 		</div>
 
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- Delete Modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer mon compte</h1>
+						<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer mon compte</h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
@@ -66,14 +66,25 @@
 			</h4>
 		</div>
 
-		<div class="row g-4 my-5">
-			<h3 class="mb-4">Mes figures ({{ app.user.figures|length }})</h3>
+		<h3 class="mb-4">Mes figures ({{ app.user.figures|length }})</h3>
+
+		<div class="row row-cols-1 row-cols-md-3 g-4 my-5">
 			{% if app.user.figures is not null %}
 				{% for figure in app.user.figures %}
-					<div class="col-4">
+					<div class="col">
 						<div class="card h-100">
 							<div class="card-body">
-								<h5 class="card-title">{{ figure.name }}</h5>
+								<div class="row">
+									<h5 class="col-8 card-title">{{ figure.name }}</h5>
+									<div class="col-4">
+										<button type="button" class="col btn btn-success" data-bs-toggle="modal" data-bs-target="#deleteModal">
+											<i class="fas fa-edit"></i>
+										</button>
+										<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+											<i class="fas fa-trash"></i>
+										</button>
+									</div>
+								</div>
 								<a href="{{ path('figure_show', {'slug' : figure.slug}) }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
 								<p class="card-text d-flex justify-content-end">
 									<small class="text-muted">

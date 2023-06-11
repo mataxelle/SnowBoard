@@ -1,57 +1,57 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  {{ parent() }}
-  | Accueil
+	{{ parent() }}
+	| Accueil
 {% endblock %}
 
 {% block body %}
-  <div class="text-center">
-    <h1 class="my-5">
-      Amoureux des sports d'hiver,<br />
-      rejoins la plateforme d'informations sur les figures de snow, la où le partage
-      est essentiel !
-    </h1>
+	<div class="container text-center">
+		<h1 class="my-5">
+			Amoureux des sports d'hiver,<br/>
+			rejoins la plateforme d'informations sur les figures de snow, la où le partage
+			      est essentiel !
+		</h1>
 
-    {% if app.user %}
+		{% if app.user %}
 			<h4>
 				<a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary mt-5">Ajouter un article</a>
 			</h4>
 		{% endif %}
 
-	  <img class="img-fluid" src="/assets/images/snow1.jpg" alt="image de code">
+		<img class="img-fluid" src="/assets/images/snow1.jpg" alt="image de code">
 
-    <h2 class="my-5">
-      Figure de Snow
-    </h2>
+		<h2 class="my-5">
+			Figure de Snow
+		</h2>
 
-    <div>
-      <h3>
-        Les figures
-      </h3>
+		<div>
+			<h3>
+				Les figures
+			</h3>
 
-      <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
-      {% for figure in figures %}
-        <div class="col">
-					<div class="card h-100">
-						<div class="card-body">
-							<h5 class="card-title">{{ figure.name }}</h5>
-							<a href="{{ path('figure_show', {'slug' : figure.slug}) }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
-							<p class="card-text d-flex justify-content-end">
-								<small class="text-muted">
-									<em>Publié le
-										{{ figure.updatedAt|date('d/m/Y') }}</em>
-								</small>
-							</p>
+			<div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+				{% for figure in figures %}
+					<div class="col">
+						<div class="card h-100">
+							<div class="card-body">
+								<h5 class="card-title">{{ figure.name }}</h5>
+								<a href="{{ path('figure_show', {'slug' : figure.slug}) }}" role="button" class="btn btn-outline-danger my-4">Consulter la figure</a>
+								<p class="card-text d-flex justify-content-end">
+									<small class="text-muted">
+										<em>Publié le
+											{{ figure.updatedAt|date('d/m/Y') }}</em>
+									</small>
+								</p>
+							</div>
 						</div>
-					</div>
 
-				</div>
-      {% endfor %}
-      </div>
-      <div class="navigation d-flex justify-content-center my-8">
-        {{ knp_pagination_render(figures) }}
-      </div>
-    </div>
-  </div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="navigation d-flex justify-content-center my-8">
+				{{ knp_pagination_render(figures) }}
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -26,6 +26,10 @@ class AppFixtures extends Fixture
     {
         //Faker
         $faker = Factory::create('fr_FR');
+        //To keep the same fixtures
+        $faker->seed(2005);
+
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
 
         //User admin fixtures
         $admin = new User();
@@ -34,7 +38,7 @@ class AppFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setFirstname($faker->firstName())
             ->setLastname($faker->lastName())
-            ->setImageProfile($faker->imageUrl());
+            ->setImageProfile($faker->image($width = 640, $height = 480));
 
         //Password hash
         $password = $this->passwordHasher->hashPassword($admin, 'azertyuiop');
@@ -50,7 +54,7 @@ class AppFixtures extends Fixture
                 ->setRoles(['ROLE_USER'])
                 ->setFirstname($faker->firstName())
                 ->setLastname($faker->lastName())
-                ->setImageProfile($faker->imageUrl());
+                ->setImageProfile($faker->image($width = 640, $height = 480));
 
             //Password hash
             $password = $this->passwordHasher->hashPassword($user, 'azertyuiop');
@@ -84,7 +88,7 @@ class AppFixtures extends Fixture
                 for ($j = 0; $j < 4; $j++) {
                     $image = new Image();
 
-                    $image->setName($faker->imageUrl())
+                    $image->setName($faker->image($width = 640, $height = 480))
                         ->setFigure($figure);
 
                     $manager->persist($image);
@@ -94,7 +98,7 @@ class AppFixtures extends Fixture
                 for ($k = 0; $k < 2; $k++) {
                     $video = new Video();
 
-                    $video->setUrl($faker->url())
+                    $video->setUrl('https://pixabay.com/videos/snow-mountains-snowboarding-65918/')
                         ->setFigure($figure);
 
                     $manager->persist($video);
