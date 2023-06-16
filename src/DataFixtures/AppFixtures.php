@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setFirstname($faker->firstName())
             ->setLastname($faker->lastName())
-            ->setImageProfile($faker->image($width = 640, $height = 480));
+            ->setImageProfile($faker->imageUrl());
 
         //Password hash
         $password = $this->passwordHasher->hashPassword($admin, 'azertyuiop');
@@ -54,7 +54,7 @@ class AppFixtures extends Fixture
                 ->setRoles(['ROLE_USER'])
                 ->setFirstname($faker->firstName())
                 ->setLastname($faker->lastName())
-                ->setImageProfile($faker->image($width = 640, $height = 480));
+                ->setImageProfile($faker->imageUrl());
 
             //Password hash
             $password = $this->passwordHasher->hashPassword($user, 'azertyuiop');
@@ -88,7 +88,7 @@ class AppFixtures extends Fixture
                 for ($j = 0; $j < 4; $j++) {
                     $image = new Image();
 
-                    $image->setName($faker->image($width = 640, $height = 480))
+                    $image->setName($faker->imageUrl())
                         ->setFigure($figure);
 
                     $manager->persist($image);
@@ -98,7 +98,7 @@ class AppFixtures extends Fixture
                 for ($k = 0; $k < 2; $k++) {
                     $video = new Video();
 
-                    $video->setUrl('https://pixabay.com/videos/snow-mountains-snowboarding-65918/')
+                    $video->setUrl($faker->url())
                         ->setFigure($figure);
 
                     $manager->persist($video);
@@ -109,7 +109,7 @@ class AppFixtures extends Fixture
                     $comment = new Comment();
 
                     $comment->setMessage($faker->text(50))
-                        ->setUser($user)
+                        ->setCreatedBy($user)
                         ->setFigure($figure);
 
                     $manager->persist($comment);

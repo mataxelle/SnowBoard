@@ -3,15 +3,21 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use App\Entity\Traits\BlameableEntity;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
+#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: false, hardDelete: true)]
 class Comment
 {
+    use BlameableEntity;
     use TimestampableEntity;
+    use SoftDeleteableEntity;
     
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,10 +27,6 @@ class Comment
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
     private ?string $message = null;
-
-    #[ORM\ManyToOne(inversedBy: 'comments')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
@@ -43,18 +45,6 @@ class Comment
     public function setMessage(string $message): self
     {
         $this->message = $message;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

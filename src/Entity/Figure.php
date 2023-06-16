@@ -3,18 +3,24 @@
 namespace App\Entity;
 
 use App\Repository\FigureRepository;
+use App\Entity\Traits\BlameableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Mapping\Annotation\Slug;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 #[ORM\Entity(repositoryClass: FigureRepository::class)]
+#[Gedmo\SoftDeleteable(fieldName: 'deletedAt', timeAware: false, hardDelete: true)]
 class Figure
 {
+    use BlameableEntity;
     use TimestampableEntity;
+    use SoftDeleteableEntity;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -39,10 +45,6 @@ class Figure
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
     private ?string $description = null;
-
-    #[ORM\ManyToOne(inversedBy: 'figures')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $createdBy = null;
 
     #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Image::class, orphanRemoval: true, cascade: ["persist", "remove"])]
     private Collection $images;
@@ -109,18 +111,6 @@ class Figure
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCreatedBy(): ?User
-    {
-        return $this->createdBy;
-    }
-
-    public function setCreatedBy(?User $createdBy): self
-    {
-        $this->createdBy = $createdBy;
 
         return $this;
     }

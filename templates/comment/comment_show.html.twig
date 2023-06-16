@@ -6,8 +6,8 @@
 		<div class="row mb-3 comments">
 			<div class="col-4">
 			    <div class="row">
-				    <img src="{{ vich_uploader_asset(comment.user, 'imageProfileFile') }}" class="col-6 d-flex align-items-center img-fluid" alt="user image profile" style="width: 5rem; border-radius: 50%">
-				    <p class="col-6 d-flex align-items-center">{{ comment.user.firstname }}</p>
+				    <img src="{{ vich_uploader_asset(comment.createdBy, 'imageProfileFile') }}" class="col-6 d-flex align-items-center img-fluid" alt="user image profile" style="width: 5rem; border-radius: 50%">
+				    <p class="col-6 d-flex align-items-center">{{ comment.createdBy.firstname }}</p>
 				</div>
 			</div>
 			<div class="col-8">
