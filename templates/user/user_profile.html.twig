@@ -7,6 +7,14 @@
 	<div class="container">
 		<h1 class="text-center my-5">Profile</h1>
 
+		<div class="col-4 offset-4">
+			{% for message in app.flashes('message') %}
+				<div class="alert alert-success" role="alert">
+					<P>{{ message }}</p>
+				</div>
+			{% endfor %}
+		</div>
+
 		<div class="row">
 			<div class="col-8 col-md-8 offset-2">
 				<div class="card mb-3 mx-auto" style="border: none">

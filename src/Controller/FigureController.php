@@ -31,7 +31,7 @@ class FigureController extends AbstractController
 
         $form->handleRequest($request);
 
-        //$figure->setCreatedBy($this->getUser());
+        $figure->setCreatedBy($this->getUser());
         
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -56,6 +56,11 @@ class FigureController extends AbstractController
             $entityManagerInterface->persist($figure);
             $entityManagerInterface->flush();
 
+            $this->addFlash(
+                'message',
+                'Votre figure a été créé avec succès !'
+            );
+
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
@@ -77,7 +82,7 @@ class FigureController extends AbstractController
         $form->handleRequest($request);
 
         $comment->setFigure($figure);
-        //$comment->setUser($this->getUser());
+        $comment->setCreatedBy($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
 
