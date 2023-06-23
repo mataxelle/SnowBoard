@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HTTP Error {{ exception.statusCode }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-5">HTTP Error {{ exception.statusCode }}</h1>
+
+    <div class="row">
+        <div class="col">
+            <p class="text-center mt-5 mb-5">{{ exception.statusText }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
