@@ -49,19 +49,14 @@
                         <td>{{ figure.updatedAt|date('d/m/Y') }}</td>
                         <td>
                             <a class="btn btn-success" href=""><i class="fas fa-edit"></i></a>
-                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{figure.id}}">
 					            <i class="fas fa-trash"></i>
 				            </button>
                         </td>
                     </tr>
-                {% set i = i+1 %}
-                {% endfor %}
-            </table>
-        </div>
-    </div>
 
-    <!-- Delete Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <!-- Delete Modal -->
+	<div class="modal fade" id="deleteModal{{figure.id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -73,10 +68,15 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<a href="" class="btn btn-danger" role="button">Supprimer</a>
+					<a href="{{ path('figure_delete', {'id' : figure.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
 				</div>
 			</div>
 		</div>
 	</div>
+                {% set i = i+1 %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

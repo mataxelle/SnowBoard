@@ -3,24 +3,48 @@
 
 	{% if comments %}
 		{% for comment in comments %}
-		<div class="row mb-3 comments">
-			<div class="col-4">
-			    <div class="row">
-				    <img src="{{ vich_uploader_asset(comment.createdBy, 'imageProfileFile') }}" class="col-6 d-flex align-items-center img-fluid" alt="user image profile" style="width: 5rem; border-radius: 50%">
-				    <p class="col-6 d-flex align-items-center">{{ comment.createdBy.firstname }}</p>
+			<div class="row mb-3 comments">
+				<div class="col-4">
+					<div class="row">
+						<img src="{{ vich_uploader_asset(comment.createdBy, 'imageProfileFile') }}" class="col-6 d-flex align-items-center img-fluid" alt="user image profile" style="width: 5rem; border-radius: 50%">
+						<p class="col-6 d-flex align-items-center">{{ comment.createdBy.firstname }}</p>
+					</div>
+				</div>
+				<div class="col-8">
+					<div class="row row-cols-1">
+						<p class="col-11">{{ comment.message }}</p>
+						{% if app.user == comment.createdBy or is_granted("ROLE_ADMIN") %}
+						<button type="button" class="col btn btn-link" style="width:3rem;border:none;" data-bs-toggle="modal" data-bs-target="#deleteModal{{ comment.id }}">
+							<i style="color:red;" class="fas fa-trash"></i>
+						</button>
+						{% endif %}
+					</div>
+				</div>
+
+				<!-- Delete Modal -->
+				<div class="modal fade" id="deleteModal{{ comment.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer le commentaire</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								...
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+								<a href="{{ path('comment_delete', {'id' : comment.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-8">
-				<div class="row">
-					<p class="d-flex align-items-center">{{ comment.message }}</p>
-				</div>
-			</div>
-		</div>
 		{% endfor %}
 	{% else %}
 		<p>Pas de commentaires</p>
 	{% endif %}
 </div>
 <div class="navigation d-flex justify-content-center my-8">
-   {{ knp_pagination_render(comments) }}
+	{{ knp_pagination_render(comments) }}
 </div>

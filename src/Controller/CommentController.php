@@ -11,13 +11,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     #[Route('/comment/{id}/delete', name: 'comment_delete')]
-    public function index(EntityManagerInterface $entityManagerInterface, Comment $comment): Response
+    public function index(EntityManagerInterface $entityManagerInterface, ?Comment $comment): Response
     {
         if ($comment) {
             $entityManagerInterface->remove($comment);
             $entityManagerInterface->flush();
 
-            return $this->redirectToRoute('app_admin_comments');
+            $this->addFlash(
+                'message',
+                'Le commentaire a été supprimé avec succès !'
+            );
+
+            if ($this->getUser()->getRoles() !== "ROLE_ADMIN") {
+                return $this->redirectToRoute('figure_show', ['slug' => $comment->getFigure()->getSlug()]);
+            } else {
+                return $this->redirectToRoute('app_admin_comments');
+            }
         }
     }
 }
