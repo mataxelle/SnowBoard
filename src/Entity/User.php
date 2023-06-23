@@ -64,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'createdBy', targetEntity: Figure::class, orphanRemoval: true)]
     private Collection $figures;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'createdBy', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
     #[ORM\Column(type: 'boolean')]

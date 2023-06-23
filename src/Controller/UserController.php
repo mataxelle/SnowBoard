@@ -49,15 +49,30 @@ class UserController extends AbstractController
     }
 
     #[Route('/profile/{id}/delete', name: 'user_profile_delete')]
-    public function delete(User $user, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(?User $user, EntityManagerInterface $entityManagerInterface): Response
     {
-        $this->denyAccessUnlessGranted(['ROLE_ADMIN', 'ROLE_USER']);
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_USER');
         
         if ($user) {
             $entityManagerInterface->remove($user);
             $entityManagerInterface->flush();
 
-            return $this->redirectToRoute('home');
+            if ($this->getUser()->getRoles() !== "ROLE_ADMIN") {
+                $this->addFlash(
+                    'message',
+                    'Votre compte a été supprimé avec succès !'
+                );
+
+                return $this->redirectToRoute('app_login');
+            } else {
+                $this->addFlash(
+                    'message',
+                    'Le profil a été supprimé avec succès !'
+                );
+
+                return $this->redirectToRoute('app_admin_users');
+            }
         }
     }
 }

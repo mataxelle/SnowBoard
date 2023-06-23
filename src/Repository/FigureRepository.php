@@ -49,6 +49,14 @@ class FigureRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function getFiguresByDate(): array
+    {
+        return $this->createQueryBuilder('f')
+        ->orderBy('f.createdAt', 'DESC')
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Figure[] Returns an array of Figure objects
 //     */

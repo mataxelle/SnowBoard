@@ -51,12 +51,7 @@ class ContactController extends AbstractController
                 'Votre message a été envoyé avec succès !'
             );
 
-            return $this->redirectToRoute('app_contact');
-        } else {
-            $this->addFlash(
-                'message',
-                $form->getErrors()
-            );
+            return $this->redirectToRoute('app_contact_add');
         }
 
         return $this->render('contact/contact_create.html.twig', [
@@ -75,5 +70,21 @@ class ContactController extends AbstractController
          return $this->render('contact/contact_show.html.twig', [
             'contact' => $contact,
         ]);
+    }
+
+    #[Route('/{id}/delete', name: 'delete')]
+    public function delete(?Contact $contact, EntityManagerInterface $entityManagerInterface): Response
+    {
+        if ($contact) {
+            $entityManagerInterface->remove($contact);
+            $entityManagerInterface->flush();
+
+            $this->addFlash(
+                'message',
+                'Le message a été supprimé avec succès !'
+            );
+
+            return $this->redirectToRoute('app_admin_contacts');
+        }
     }
 }

@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(FigureRepository $figureRepository,Request $request, PaginatorInterface $paginationInterface): Response
     {
-        $data = $figureRepository->findAll();
+        $data = $figureRepository->getFiguresByDate();
         $figures = $paginationInterface->paginate(
             $data,
             $request->query->getInt('page', 1),

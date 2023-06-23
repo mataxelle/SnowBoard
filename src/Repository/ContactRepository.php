@@ -41,12 +41,20 @@ class ContactRepository extends ServiceEntityRepository
 
     public function getContactsCount(): int
     {
-        $result = $this->createQueryBuilder('u')
-        ->select('count(u.id)')
+        $result = $this->createQueryBuilder('c')
+        ->select('count(c.id)')
         ->getQuery()
         ->getSingleScalarResult();
 
         return $result;
+    }
+
+    public function getContactsByDate(): array
+    {
+        return $this->createQueryBuilder('c')
+        ->orderBy('c.createdAt', 'DESC')
+        ->getQuery()
+        ->getResult();
     }
 
 //    /**

@@ -49,6 +49,14 @@ class CommentRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function getCommentsByDate(): array
+    {
+        return $this->createQueryBuilder('c')
+        ->orderBy('c.createdAt', 'DESC')
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Comment[] Returns an array of Comment objects
 //     */

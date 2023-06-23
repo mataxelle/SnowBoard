@@ -22,7 +22,7 @@
 			<div class="col">
 				<div class="row mb-5">
 					<h5>Commentaires(s)
-						<span>({{ comments|length }})</span>
+						<span>({{ commentsCount|length }})</span>
 					</h5>
 				</div>
 				<table class="table table-striped">
@@ -77,6 +77,10 @@
 					{% endfor %}
 				</table>
 			</div>
+		</div>
+
+		<div class="navigation d-flex justify-content-center my-8">
+			{{ knp_pagination_render(comments) }}
 		</div>
 	</div>
 {% endblock %}

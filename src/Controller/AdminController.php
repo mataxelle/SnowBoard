@@ -6,7 +6,9 @@ use App\Repository\CommentRepository;
 use App\Repository\ContactRepository;
 use App\Repository\FigureRepository;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -36,12 +38,18 @@ class AdminController extends AbstractController
     }
 
     #[Route('/users', name: 'users')]
-    public function users(UserRepository $userRepository): Response
+    public function users(UserRepository $userRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $users = $userRepository->findAll();
+        $data = $userRepository->getUsersByDate();
+        $users = $paginatorInterface->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('admin/users.html.twig', [
             'users' => $users,
+            'usersCount' => $data
         ]);
     }
 
@@ -57,41 +65,50 @@ class AdminController extends AbstractController
     }
 
     #[Route('/figures', name: 'figures')]
-    public function figures(FigureRepository $figureRepository): Response
+    public function figures(FigureRepository $figureRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $figures = $figureRepository->findBy(
-            [],
-            ['createdAt' => 'DESC']
+        $data = $figureRepository->getFiguresByDate();
+        $figures = $paginatorInterface->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
         );
 
         return $this->render('admin/figures.html.twig', [
             'figures' => $figures,
+            'figuresCount' => $data
         ]);
     }
 
     #[Route('/comments', name: 'comments')]
-    public function comments(CommentRepository $commentRepository): Response
+    public function comments(CommentRepository $commentRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $comments = $commentRepository->findBy(
-            [],
-            ['createdAt' => 'DESC']
+        $data = $commentRepository->getCommentsByDate();
+        $comments = $paginatorInterface->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
         );
 
         return $this->render('admin/comments.html.twig', [
             'comments' => $comments,
+            'commentsCount' => $data
         ]);
     }
 
     #[Route('/contacts', name: 'contacts')]
-    public function contacts(ContactRepository $contactRepository): Response
+    public function contacts(ContactRepository $contactRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $contacts = $contactRepository->findBy(
-            [],
-            ['createdAt' => 'DESC']
+        $data = $contactRepository->getContactsByDate();
+        $contacts = $paginatorInterface->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
         );
 
         return $this->render('admin/contacts.html.twig', [
             'contacts' => $contacts,
+            'contactsCount' => $data
         ]);
     }
 }

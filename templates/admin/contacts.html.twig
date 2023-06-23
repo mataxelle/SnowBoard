@@ -9,11 +9,19 @@
         <h1 class="col text-center mt-5 mb-5">liste des messages</h1>
     </div>
 
+    <div class="col-4 offset-4">
+			{% for message in app.flashes('message') %}
+				<div class="alert alert-success" role="alert">
+					<P>{{ message }}</p>
+				</div>
+			{% endfor %}
+		</div>
+
     <div class="row">
         <div class="col">
             <div class="row mb-5">
                 <h5>Message(s)
-                    <span>({{ contacts|length }})</span>
+                    <span>({{ contactsCount|length }})</span>
                 </h5>
             </div>
             <table class="table table-striped">
@@ -46,7 +54,7 @@
                         {% if message.isAnswered == 0 %}
                         <td>
                             <a class="btn btn-primary" href="{{ path('app_contact_show', {'id' : message.id}) }}"><i class="far fa-file"></i></a>
-                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ message.id }}">
 					            <i class="fas fa-trash"></i>
 				            </button>
                         </td>
@@ -54,35 +62,39 @@
                         <td>
                             <a class="btn btn-primary" href="{{ path('app_contact_show', {'id' : message.id}) }}"><i class="far fa-file"></i></a> 
                             <a class="btn btn-dark disabled" href=""><i class="fas fa-window-minimize"></i></i></a>
-                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ message.id }}">
 					            <i class="fas fa-trash"></i>
 				            </button>
                         </td>
                         {% endif %}
                     </tr>
+
+                    <!-- Delete Modal -->
+						<div class="modal fade" id="deleteModal{{ message.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer le message</h1>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										...
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+										<a href="{{ path('app_contact_delete', {'id' : message.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
+									</div>
+								</div>
+							</div>
+						</div>
                 {% set i = i+1 %}
                 {% endfor %}
             </table>
         </div>
     </div>
 
-     <!-- Delete Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer le message</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<a href="" class="btn btn-danger" role="button">Supprimer</a>
-				</div>
-			</div>
+    <div class="navigation d-flex justify-content-center my-8">
+			{{ knp_pagination_render(contacts) }}
 		</div>
-	</div>
 </div>
 {% endblock %}

@@ -1,82 +1,93 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord{% endblock %}
+{% block title %}Tableau de bord
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <a href="{{ path('app_admin_board') }}" class="col-1 d-flex align-items-center">Retour</a>
-        <h1 class="col text-center mt-5 mb-5">Liste des articles</h1>
-    </div>
+	<div class="container">
+		<div class="row">
+			<a href="{{ path('app_admin_board') }}" class="col-1 d-flex align-items-center">Retour</a>
+			<h1 class="col text-center mt-5 mb-5">Liste des articles</h1>
+		</div>
 
-    <div class="row">
-        <div class="col">
-            <div class="row mb-5">
-                <h5 class="col-6 col-lg-2">Article(s)
-                    <span>({{ figures|length }})</span>
-                </h5>
-                <a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary col-6 col-lg-2">Ajouter un article</a>
-            </div>
-            <table class="table table-striped">
-                <tr>
-                    <th>#</th>
-                    <th>Titre</th>
-                    <th>Publié</th>
-                    <th>Date de publication</th>
-                    <th>Date de modification</th>
-                    <th>Actions</th>
-                </tr>
-                {% set i = 1 %}
-                {% for figure in figures %}
-                    <tr class="hoverable">
-                        <td>{{ i }}</td>
-                        <td><a href="{{ path('figure_show', {'slug' : figure.slug}) }}" target="_blank" class="text-decoration-none text-black">{{ figure.name }}</a></td>
-                        <td>
-                            <a class="btn btn-info disabled" href=""><i class="far fa-eye"></i></a>
-                        </td>
-                        <!--
-                        if
-                        <td>
-                            <a class="btn btn-warning" href=""><i class="far fa-eye-slash"></i></a>
-                        </td>
-                        else
-                        <td>
-                            <a class="btn btn-info disabled" href=""><i class="far fa-eye"></i></a>
-                        </td>
-                        end
-                        -->
-                        <td>{{ figure.createdAt ? figure.createdAt|date('d/m/Y') : '-' }}</td>
-                        <td>{{ figure.updatedAt|date('d/m/Y') }}</td>
-                        <td>
-                            <a class="btn btn-success" href=""><i class="fas fa-edit"></i></a>
-                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{figure.id}}">
-					            <i class="fas fa-trash"></i>
-				            </button>
-                        </td>
-                    </tr>
+		<div class="row">
+			<div class="col">
+				<div class="row mb-5">
+					<h5 class="col-6 col-lg-2">Article(s)
+						<span>({{ figuresCount|length }})</span>
+					</h5>
+					<a href="{{ path('figure_add') }}" role="button" class="btn btn-lg btn-primary col-6 col-lg-2">Ajouter un article</a>
+				</div>
+				<table class="table table-striped">
+					<tr>
+						<th>#</th>
+						<th>Titre</th>
+						<th>Publié</th>
+						<th>Date de publication</th>
+						<th>Date de modification</th>
+						<th>Actions</th>
+					</tr>
+					{% set i = 1 %}
+					{% for figure in figures %}
+						<tr class="hoverable">
+							<td>{{ i }}</td>
+							<td>
+								<a href="{{ path('figure_show', {'slug' : figure.slug}) }}" target="_blank" class="text-decoration-none text-black">{{ figure.name }}</a>
+							</td>
+							<td>
+								<a class="btn btn-info disabled" href="">
+									<i class="far fa-eye"></i>
+								</a>
+							</td>
+							<!--
+														                        if
+														                        <td>
+														                            <a class="btn btn-warning" href=""><i class="far fa-eye-slash"></i></a>
+														                        </td>
+														                        else
+														                        <td>
+														                            <a class="btn btn-info disabled" href=""><i class="far fa-eye"></i></a>
+														                        </td>
+														                        end
+														                        -->
+							<td>{{ figure.createdAt ? figure.createdAt|date('d/m/Y') : '-' }}</td>
+							<td>{{ figure.updatedAt|date('d/m/Y') }}</td>
+							<td>
+								<a class="btn btn-success" href="">
+									<i class="fas fa-edit"></i>
+								</a>
+								<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{figure.id}}">
+									<i class="fas fa-trash"></i>
+								</button>
+							</td>
+						</tr>
 
-                    <!-- Delete Modal -->
-	<div class="modal fade" id="deleteModal{{figure.id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer l'article</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<a href="{{ path('figure_delete', {'id' : figure.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
-				</div>
+						<!-- Delete Modal -->
+						<div class="modal fade" id="deleteModal{{figure.id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer l'article</h1>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										...
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+										<a href="{{ path('figure_delete', {'id' : figure.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% set i = i+1 %}
+					{% endfor %}
+				</table>
 			</div>
 		</div>
+
+		<div class="navigation d-flex justify-content-center my-8">
+			{{ knp_pagination_render(figures) }}
+		</div>
 	</div>
-                {% set i = i+1 %}
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-</div>
 {% endblock %}

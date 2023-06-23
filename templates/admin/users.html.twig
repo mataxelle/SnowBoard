@@ -1,79 +1,97 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord{% endblock %}
+{% block title %}Tableau de bord
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <a href="{{ path('app_admin_board') }}" class="col-1 d-flex align-items-center">Retour</a>
-        <h1 class="col text-center mt-5 mb-5">Liste des utilisateurs</h1>
-    </div>
+	<div class="container">
+		<div class="row">
+			<a href="{{ path('app_admin_board') }}" class="col-1 d-flex align-items-center">Retour</a>
+			<h1 class="col text-center mt-5 mb-5">Liste des utilisateurs</h1>
+		</div>
 
-    <div class="row">
-        <div class="col">
-            <div class="row mb-5">
-                <h5 class="col-6 col-lg-2">Utilisateur(s)
-                    <span>({{ users|length }})</span>
-                </h5>
-                <a href="" role="button" class="btn btn-lg btn-primary col-6 col-lg-2">Ajouter un user</a>
-            </div>
-            <table class="table table-striped">
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Roles</th>
-                    <th>Email</th>
-                    <th>Inscrit le</th>
-                    <th>Actions</th>
-                </tr>
-                {% set i = 1 %}
-                {% for user in users %}
-                    <tr class="hoverable">
-                        <td>{{ i }}</td>
-                        <td><a href="{{ path('app_admin_user_profile', {'id': user.id}) }}" target="_blank" class="text-decoration-none text-black">{{ user.lastname }}</a></td>
-                        <td>{{ user.firstname }}</td>
-                        {% if 'ROLE_ADMIN' in user.roles %}
-                            <td>
-                                <span class="badge bg-info">admin</span>
-                            </td>
-                            {% else %}
-                            <td>
-                                <span class="badge bg-secondary"> no admin</span>
-                            </td>
-                        {% endif %}
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.updatedAt|date('d/m/Y') }}</td>
-                        <td>
-                            <a class="btn btn-success" href=""><i class="fas fa-edit"></i></a>
-                            <button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-					            <i class="fas fa-trash"></i>
-				            </button>
-                        </td>
-                    </tr>
-                {% set i = i+1 %}
-                {% endfor %}
-            </table>
-        </div>
-    </div>
+        <div class="col-4 offset-4">
+			{% for message in app.flashes('message') %}
+				<div class="alert alert-success" role="alert">
+					<P>{{ message }}</p>
+				</div>
+			{% endfor %}
+		</div>
 
-    <!-- Delete Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer le compte</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="row">
+			<div class="col">
+				<div class="row mb-5">
+					<h5 class="col-6 col-lg-2">Utilisateur(s)
+						<span>({{ usersCount|length }})</span>
+					</h5>
+					<a href="" role="button" class="btn btn-lg btn-primary col-6 col-lg-2">Ajouter un user</a>
 				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-					<a href="" class="btn btn-danger" role="button">Supprimer</a>
-				</div>
+				<table class="table table-striped">
+					<tr>
+						<th>#</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Roles</th>
+						<th>Email</th>
+						<th>Inscrit le</th>
+						<th>Actions</th>
+					</tr>
+					{% set i = 1 %}
+					{% for user in users %}
+						<tr class="hoverable">
+							<td>{{ i }}</td>
+							<td>
+								<a href="{{ path('app_admin_user_profile', {'id': user.id}) }}" target="_blank" class="text-decoration-none text-black">{{ user.lastname }}</a>
+							</td>
+							<td>{{ user.firstname }}</td>
+							{% if 'ROLE_ADMIN' in user.roles %}
+								<td>
+									<span class="badge bg-info">admin</span>
+								</td>
+							{% else %}
+								<td>
+									<span class="badge bg-secondary">
+										no admin</span>
+								</td>
+							{% endif %}
+							<td>{{ user.email }}</td>
+							<td>{{ user.updatedAt|date('d/m/Y') }}</td>
+							<td>
+								<a class="btn btn-success" href="">
+									<i class="fas fa-edit"></i>
+								</a>
+								<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ user.id }}">
+									<i class="fas fa-trash"></i>
+								</button>
+							</td>
+						</tr>
+
+						<!-- Delete Modal -->
+						<div class="modal fade" id="deleteModal{{ user.id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="deleteModalLabel">Supprimer le profil</h1>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										...
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+										<a href="{{ path('user_profile_delete', {'id' : user.id}) }}" class="btn btn-danger" role="button">Supprimer</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% set i = i+1 %}
+					{% endfor %}
+				</table>
 			</div>
 		</div>
+
+		<div class="navigation d-flex justify-content-center my-8">
+			{{ knp_pagination_render(users) }}
+		</div>
 	</div>
-</div>
 {% endblock %}
