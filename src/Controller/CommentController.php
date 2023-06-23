@@ -9,7 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CommentController extends AbstractController
-{
+{ 
+    /**
+     * Delete a comment
+     *
+     * @param  mixed $entityManagerInterface
+     * @param  mixed $comment
+     * @return Response
+     */
     #[Route('/comment/{id}/delete', name: 'comment_delete')]
     public function delete(EntityManagerInterface $entityManagerInterface, ?Comment $comment): Response
     {

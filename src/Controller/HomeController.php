@@ -11,6 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    /**
+     * Display all figures
+     *
+     * @param  mixed $figureRepository
+     * @param  mixed $request
+     * @param  mixed $paginationInterface
+     * @return Response
+     */
     #[Route('/', name: 'home')]
     public function index(FigureRepository $figureRepository, Request $request, PaginatorInterface $paginationInterface): Response
     {

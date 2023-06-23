@@ -15,6 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FigureController extends AbstractController
 {
+    /**
+     * Display all figures
+     *
+     * @return Response
+     */
     #[Route('/figure', name: 'figures_all')]
     public function index(): Response
     {
@@ -23,6 +28,13 @@ class FigureController extends AbstractController
         ]);
     }
 
+    /**
+     * Create a Figure
+     *
+     * @param  mixed $request
+     * @param  mixed $entityManagerInterface
+     * @return Response
+     */
     #[Route('/figure/add', name: 'figure_add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -67,6 +79,15 @@ class FigureController extends AbstractController
         ]);
     }
 
+    /**
+     * Show a figure
+     *
+     * @param  mixed $figure
+     * @param  mixed $request
+     * @param  mixed $entityManagerInterface
+     * @param  mixed $paginationInterface
+     * @return Response
+     */
     #[Route('/figure/{slug}', name: 'figure_show')]
     public function figure(?Figure $figure, Request $request, EntityManagerInterface $entityManagerInterface, PaginatorInterface $paginationInterface): Response
     {
@@ -102,6 +123,13 @@ class FigureController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete a figure
+     *
+     * @param  mixed $figure
+     * @param  mixed $entityManagerInterface
+     * @return Response
+     */
     #[Route('/figure/{id}/delete', name: 'figure_delete')]
     public function delete(?Figure $figure, EntityManagerInterface $entityManagerInterface): Response
     {

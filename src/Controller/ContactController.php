@@ -14,6 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/contact', name: 'app_contact_')]
 class ContactController extends AbstractController
 {
+    /**
+     * Create a message
+     *
+     * @param  mixed $request
+     * @param  mixed $entityManagerInterface
+     * @param  mixed $mailjet
+     * @return Response
+     */
     #[Route('', name: 'add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface, Mailjet $mailjet): Response
     {
@@ -60,6 +68,12 @@ class ContactController extends AbstractController
         ]);
     }
 
+    /**
+     * Show a message
+     *
+     * @param  mixed $contact
+     * @return Response
+     */
     #[Route('/{id}', name: 'show')]
     public function contact(?Contact $contact): Response
     {
@@ -72,6 +86,13 @@ class ContactController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete a message
+     *
+     * @param  mixed $contact
+     * @param  mixed $entityManagerInterface
+     * @return Response
+     */
     #[Route('/{id}/delete', name: 'delete')]
     public function delete(?Contact $contact, EntityManagerInterface $entityManagerInterface): Response
     {

@@ -12,6 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    /**
+     * Display a profile
+     *
+     * @param  mixed $user
+     * @return Response
+     */
     #[Route('/profile/{id}', name: 'user_profile')]
     public function profile(User $user): Response
     {
@@ -20,6 +26,14 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit a profile
+     *
+     * @param  mixed $user
+     * @param  mixed $request
+     * @param  mixed $entityManagerInterface
+     * @return Response
+     */
     #[Route('/profile/{id}/edit', name: 'user_profile_edit')]
     public function edit(User $user, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -48,6 +62,13 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete a profile
+     *
+     * @param  mixed $user
+     * @param  mixed $entityManagerInterface
+     * @return Response
+     */
     #[Route('/profile/{id}/delete', name: 'user_profile_delete')]
     public function delete(?User $user, EntityManagerInterface $entityManagerInterface): Response
     {
