@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\Comment;
 use App\Entity\Figure;
 use App\Entity\User;
-use DateTimeImmutable;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class UserUnitTest extends TestCase
@@ -13,16 +13,16 @@ class UserUnitTest extends TestCase
     public function testIsTrue(): void
     {
         $user = new User();
-        $datetime = new DateTimeImmutable();
+        $datetime = new DateTime();
 
         $user->setEmail('true@test.com')
-             ->setRoles(['ROLE_TEST'])
-             ->setPassword('password')
-             ->setFirstname('nom')
-             ->setLastname('prenom')
-             ->setImageProfile('file')
-             ->setCreatedAt($datetime)
-             ->setUpdatedAt($datetime);
+            ->setRoles(['ROLE_TEST'])
+            ->setPassword('password')
+            ->setFirstname('nom')
+            ->setLastname('prenom')
+            ->setImageProfile('file')
+            ->setCreatedAt($datetime)
+            ->setUpdatedAt($datetime);
 
         $this->assertTrue($user->getEmail() === 'true@test.com');
         $this->assertTrue($user->getUserIdentifier() === 'true@test.com');
@@ -35,24 +35,24 @@ class UserUnitTest extends TestCase
     public function testIsFalse(): void
     {
         $user = new User();
-        $datetime = new DateTimeImmutable();
+        $datetime = new DateTime();
 
         $user->setEmail('true@test.com')
-             ->setRoles(['ROLE_TEST'])
-             ->setPassword('password')
-             ->setFirstname('nom')
-             ->setLastname('prenom')
-             ->setImageProfile('file')
-             ->setCreatedAt($datetime)
-             ->setUpdatedAt($datetime);
+            ->setRoles(['ROLE_TEST'])
+            ->setPassword('password')
+            ->setFirstname('nom')
+            ->setLastname('prenom')
+            ->setImageProfile('file')
+            ->setCreatedAt($datetime)
+            ->setUpdatedAt($datetime);
 
         $this->assertFalse($user->getEmail() === 'false@test.com');
         $this->assertFalse($user->getUserIdentifier() === 'false@test.com');
         $this->assertFalse($user->getPassword() === 'false');
         $this->assertFalse($user->getFirstname() === 'false');
         $this->assertFalse($user->getLastname() === 'false');
-        $this->assertFalse($user->getCreatedAt() === new DateTimeImmutable());
-        $this->assertFalse($user->getUpdatedAt() === new DateTimeImmutable());
+        $this->assertFalse($user->getCreatedAt() === new DateTime());
+        $this->assertFalse($user->getUpdatedAt() === new DateTime());
     }
 
     public function testIsEmpty(): void
@@ -69,7 +69,8 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($user->getId());
     }
 
-    public function testGetAddRemoveFigure() {
+    public function testGetAddRemoveFigure()
+    {
         $user = new User();
         $figure = new Figure();
 
@@ -82,7 +83,8 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($user->getFigures());
     }
 
-    public function testGetAddRemoveComment() {
+    public function testGetAddRemoveComment()
+    {
         $user = new User();
         $comment = new Comment();
 

@@ -42,9 +42,9 @@ class ContactRepository extends ServiceEntityRepository
     public function getContactsCount(): int
     {
         $result = $this->createQueryBuilder('c')
-        ->select('count(c.id)')
-        ->getQuery()
-        ->getSingleScalarResult();
+            ->select('count(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
 
         return $result;
     }
@@ -52,33 +52,8 @@ class ContactRepository extends ServiceEntityRepository
     public function getContactsByDate(): array
     {
         return $this->createQueryBuilder('c')
-        ->orderBy('c.createdAt', 'DESC')
-        ->getQuery()
-        ->getResult();
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
-
-//    /**
-//     * @return Contact[] Returns an array of Contact objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Contact
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -22,10 +22,10 @@ class ContactController extends AbstractController
         /**
          * @var UserEntity
          */
-         $user = $this->getUser();
+        $user = $this->getUser();
         if ($this->getUser()) {
             $contact->setFullName($user->getFirstname() . ' ' . $user->getLastname())
-                    ->setEmail($user->getEmail());
+                ->setEmail($user->getEmail());
         }
 
         $form = $this->createForm(ContactFormType::class, $contact);
@@ -67,7 +67,7 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('app_admin_contacts');
         }
 
-         return $this->render('contact/contact_show.html.twig', [
+        return $this->render('contact/contact_show.html.twig', [
             'contact' => $contact,
         ]);
     }

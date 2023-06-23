@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Repository\CommentRepository;
 use App\Repository\ContactRepository;
 use App\Repository\FigureRepository;
@@ -16,14 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'board')]
-    public function index
-    (
+    public function index(
         UserRepository $userRepository,
         FigureRepository $figureRepository,
         CommentRepository $commentRepository,
         ContactRepository $contactRepository
-    ): Response
-    {
+    ): Response {
         $users = $userRepository->getUsersCount();
         $figures = $figureRepository->getFiguresCount();
         $comments = $commentRepository->getCommentsCount();
@@ -55,10 +54,10 @@ class AdminController extends AbstractController
 
     //A faire
     #[Route('/user/{id}', name: 'user_profile')]
-    public function profile(UserRepository $userRepository): Response
+    public function profile(?User $user): Response
     {
-        $user = $userRepository->findBy('id');
-        
+        //$user = $userRepository->findBy();
+
         return $this->render('user/user_profile.html.twig', [
             'user' => $user,
         ]);

@@ -42,9 +42,9 @@ class FigureRepository extends ServiceEntityRepository
     public function getFiguresCount(): int
     {
         $result = $this->createQueryBuilder('f')
-        ->select('count(f.id)')
-        ->getQuery()
-        ->getSingleScalarResult();
+            ->select('count(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
 
         return $result;
     }
@@ -52,33 +52,8 @@ class FigureRepository extends ServiceEntityRepository
     public function getFiguresByDate(): array
     {
         return $this->createQueryBuilder('f')
-        ->orderBy('f.createdAt', 'DESC')
-        ->getQuery()
-        ->getResult();
+            ->orderBy('f.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
-
-//    /**
-//     * @return Figure[] Returns an array of Figure objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Figure
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

@@ -8,7 +8,7 @@ use App\Entity\Figure;
 use App\Entity\Image;
 use App\Entity\User;
 use App\Entity\Video;
-use DateTimeImmutable;
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 class FigureUnitTest extends TestCase
@@ -18,15 +18,15 @@ class FigureUnitTest extends TestCase
         $figure = new Figure();
         $category = new Category();
         $user = new User();
-        $datetime =  new DateTimeImmutable();
+        $datetime =  new DateTime();
 
         $figure->setName('nom')
-                ->setSlug('slug')
-                ->setCategory($category)
-                ->setDescription('description')
-                ->setCreatedBy($user)
-                ->setCreatedAt($datetime)
-                ->setUpdatedAt($datetime);
+            ->setSlug('slug')
+            ->setCategory($category)
+            ->setDescription('description')
+            ->setCreatedBy($user)
+            ->setCreatedAt($datetime)
+            ->setUpdatedAt($datetime);
 
         $this->assertTrue($figure->getName() === 'nom');
         $this->assertTrue($figure->getSlug() === 'slug');
@@ -42,23 +42,23 @@ class FigureUnitTest extends TestCase
         $figure = new Figure();
         $category = new Category();
         $user = new User();
-        $datetime =  new DateTimeImmutable();
+        $datetime =  new DateTime();
 
         $figure->setName('nom')
-                ->setSlug('slug')
-                ->setCategory($category)
-                ->setDescription('description')
-                ->setCreatedBy($user)
-                ->setCreatedAt($datetime)
-                ->setUpdatedAt($datetime);
+            ->setSlug('slug')
+            ->setCategory($category)
+            ->setDescription('description')
+            ->setCreatedBy($user)
+            ->setCreatedAt($datetime)
+            ->setUpdatedAt($datetime);
 
         $this->assertFalse($figure->getName() === 'false');
         $this->assertFalse($figure->getSlug() === 'false');
         $this->assertFalse($figure->getCategory() === new Category);
         $this->assertFalse($figure->getDescription() === 'false');
         $this->assertFalse($figure->getCreatedBy() === new User);
-        $this->assertFalse($figure->getCreatedAt() === new DateTimeImmutable());
-        $this->assertFalse($figure->getUpdatedAt() === new DateTimeImmutable());
+        $this->assertFalse($figure->getCreatedAt() === new DateTime());
+        $this->assertFalse($figure->getUpdatedAt() === new DateTime());
     }
 
     public function testIsEmpty(): void
@@ -75,7 +75,8 @@ class FigureUnitTest extends TestCase
         $this->assertEmpty($figure->getId());
     }
 
-    public function testGetAddRemoveImage() {
+    public function testGetAddRemoveImage()
+    {
         $figure = new Figure();
         $image = new Image();
 
@@ -88,7 +89,8 @@ class FigureUnitTest extends TestCase
         $this->assertEmpty($figure->getImages());
     }
 
-    public function testGetAddRemoveVideo() {
+    public function testGetAddRemoveVideo()
+    {
         $figure = new Figure();
         $video = new Video();
 
@@ -101,7 +103,8 @@ class FigureUnitTest extends TestCase
         $this->assertEmpty($figure->getVideos());
     }
 
-    public function testGetAddRemoveComment() {
+    public function testGetAddRemoveComment()
+    {
         $figure = new Figure();
         $comment = new Comment();
 

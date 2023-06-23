@@ -49,7 +49,7 @@ trait BlameableEntity
      *
      * @return $this
      */
-    public function setUpdatedBy(?User $updatedBy):self
+    public function setUpdatedBy(?User $updatedBy): self
     {
         $this->updatedBy = $updatedBy;
 

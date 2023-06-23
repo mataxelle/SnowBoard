@@ -55,7 +55,7 @@ class Image
         return $this->imageFile;
     }
 
-    public function setImageFile(File $name= null)
+    public function setImageFile(File $name = null)
     {
         $this->imageFile = $name;
 

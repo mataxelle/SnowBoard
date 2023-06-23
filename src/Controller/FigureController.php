@@ -32,25 +32,23 @@ class FigureController extends AbstractController
         $form->handleRequest($request);
 
         $figure->setCreatedBy($this->getUser());
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $images = $form->getData()->getImages();
-                
-            foreach ($images as $img){
+
+            foreach ($images as $img) {
                 $img->setFigure($figure);
                 $figure->addImage($img);
-                
             }
 
             $videos = $form->getData()->getVideos();
-                
-            foreach ($videos as $video){
+
+            foreach ($videos as $video) {
                 $video->setFigure($figure);
                 $figure->addVideo($video);
-                
             }
-            
+
             $figure = $form->getData();
 
             $entityManagerInterface->persist($figure);
@@ -87,7 +85,7 @@ class FigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $comment = $form->getData();
-            
+
             $entityManagerInterface->persist($comment);
             $entityManagerInterface->flush();
 
@@ -96,7 +94,7 @@ class FigureController extends AbstractController
 
         $data = $figure->getComments();
         $comments = $paginationInterface->paginate($data, $request->query->getInt('page', 1), 10);
-    
+
         return $this->render('figure/figure_show.html.twig', [
             'figure' => $figure,
             'commentForm' => $form->createView(),
@@ -114,5 +112,4 @@ class FigureController extends AbstractController
             return $this->redirectToRoute('app_admin_figures');
         }
     }
-
 }

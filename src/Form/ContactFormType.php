@@ -10,14 +10,13 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class ContactFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fullName', TextType::class, ['required' => false] )
+            ->add('fullName', TextType::class, ['required' => false])
             ->add('email', EmailType::class, [
                 'required' => false
             ])
@@ -31,8 +30,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'required' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

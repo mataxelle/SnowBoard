@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(FigureRepository $figureRepository,Request $request, PaginatorInterface $paginationInterface): Response
+    public function index(FigureRepository $figureRepository, Request $request, PaginatorInterface $paginationInterface): Response
     {
         $data = $figureRepository->getFiguresByDate();
         $figures = $paginationInterface->paginate(

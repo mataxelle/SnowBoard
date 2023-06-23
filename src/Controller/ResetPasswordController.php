@@ -155,7 +155,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $name = $user->getFirstname();
-        
+
         $tokenReset = $resetToken->getToken();
         $route = "<h1>Hi $name!</h1>
         <p>To reset your password, please visit the following link</p>
@@ -163,12 +163,12 @@ class ResetPasswordController extends AbstractController
         <p>This link will expire in 1 hour.</p>
         
         <p>Cheers!</p>";
-        
+
         /*//// Try to use twig template
         $router = $this->render('reset_password/email.html.twig', [
             'resetToken' => $resetToken,
         ]);*/
-        
+
         $mailjet->sendEmail($user->getEmail(), $name, 'Hello', $route, 4785528);
 
         // Store the token object in session for retrieval in check-email route.

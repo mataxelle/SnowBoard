@@ -14,7 +14,7 @@ class ImageUnitTest extends TestCase
         $figure = new Figure();
 
         $image->setName('name')
-              ->setFigure($figure);
+            ->setFigure($figure);
 
         $this->assertTrue($image->getName() === 'name');
         $this->assertTrue($image->getFigure() === $figure);
@@ -26,7 +26,7 @@ class ImageUnitTest extends TestCase
         $figure = new Figure();
 
         $image->setName('name')
-              ->setFigure($figure);
+            ->setFigure($figure);
 
         $this->assertFalse($image->getName() === 'false');
         $this->assertFalse($image->getFigure() === new Figure);

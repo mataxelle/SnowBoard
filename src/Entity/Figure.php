@@ -30,8 +30,9 @@ class Figure
     #[ORM\Column(length: 150)]
     #[Assert\Length(
         min: 2,
-        max: 180)]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+        max: 180
+    )]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $name = null;
 
     #[ORM\Column(length: 100, unique: true)]
@@ -43,7 +44,7 @@ class Figure
     private ?Category $category = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'figure', targetEntity: Image::class, orphanRemoval: true, cascade: ["persist", "remove"])]

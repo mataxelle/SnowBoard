@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     #[Route('/comment/{id}/delete', name: 'comment_delete')]
-    public function index(EntityManagerInterface $entityManagerInterface, ?Comment $comment): Response
+    public function delete(EntityManagerInterface $entityManagerInterface, ?Comment $comment): Response
     {
         if ($comment) {
             $entityManagerInterface->remove($comment);

@@ -13,9 +13,9 @@ class CategoryUnitTest extends TestCase
         $category = new Category();
 
         $category->setName('nom')
-                 ->setParent($category)
-                 ->setDescription('description')
-                 ->setSlug('slug');
+            ->setParent($category)
+            ->setDescription('description')
+            ->setSlug('slug');
 
         $this->assertTrue($category->getName() === 'nom');
         $this->assertTrue($category->getParent() === $category);
@@ -28,9 +28,9 @@ class CategoryUnitTest extends TestCase
         $category = new Category();
 
         $category->setName('nom')
-                 ->setParent($category)
-                 ->setDescription('description')
-                 ->setSlug('slug');
+            ->setParent($category)
+            ->setDescription('description')
+            ->setSlug('slug');
 
         $this->assertFalse($category->getName() === 'false');
         $this->assertFalse($category->getParent() === new Category);
@@ -49,7 +49,8 @@ class CategoryUnitTest extends TestCase
         $this->assertEmpty($category->getId());
     }
 
-    public function testGetAddRemovePeinture() {
+    public function testGetAddRemovePeinture()
+    {
         $category = new Category();
         $figure = new Figure();
 

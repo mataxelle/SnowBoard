@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Email(message: 'Cet email est invalide')]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -47,12 +47,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 2, max: 50)]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 2, max: 50)] 
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+    #[Assert\Length(min: 2, max: 50)]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255, type: 'string')]
@@ -238,14 +238,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->comments;
     }
 
-    public function getIsVerified(): ?bool
+    public function addComment(Comment $comment): self
     {
-        return $this->isVerified;
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setCreatedBy($this);
+        }
+
+        return $this;
     }
 
-    public function setIsVerified(bool $is_verified): self
+    public function removeComment(Comment $comment): self
     {
-        $this->isVerified = $is_verified;
+        if ($this->comments->removeElement($comment)) {
+            if ($comment->getCreatedBy() === $this) {
+                $comment->setCreatedBy(null);
+            }
+        }
 
         return $this;
     }

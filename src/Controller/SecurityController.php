@@ -41,14 +41,14 @@ class SecurityController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
-        
+
         $form->handleRequest($request);
 
         $user->setRoles(['ROLE_USER']);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword(
-            $userPasswordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('password')->getData()
                 )
@@ -57,10 +57,10 @@ class SecurityController extends AbstractController
             $user = $form->getData();
             $entityManager->persist($user);
             $entityManager->flush();
-            
+
 
             $name = $user->getFirstname();
-            
+
             $mailjet->sendEmail($user->getEmail(), $name, 'Bienvenue', "Salut $name!! Ton inscription sera validé en cliquant sur le bouton çi-dessous !", 4769102);
 
             return $this->redirectToRoute('app_login');

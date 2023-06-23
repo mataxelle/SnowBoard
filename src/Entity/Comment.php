@@ -18,14 +18,14 @@ class Comment
     use BlameableEntity;
     use TimestampableEntity;
     use SoftDeleteableEntity;
-    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $message = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]

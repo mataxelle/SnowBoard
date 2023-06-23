@@ -59,9 +59,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function getUsersCount(): int
     {
         $result = $this->createQueryBuilder('u')
-        ->select('count(u.id)')
-        ->getQuery()
-        ->getSingleScalarResult();
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
 
         return $result;
     }
@@ -69,33 +69,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function getUsersByDate(): array
     {
         return $this->createQueryBuilder('u')
-        ->orderBy('u.createdAt', 'DESC')
-        ->getQuery()
-        ->getResult();
+            ->orderBy('u.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
-
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

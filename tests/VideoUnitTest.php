@@ -14,7 +14,7 @@ class VideoUnitTest extends TestCase
         $figure = new Figure();
 
         $video->setUrl('name')
-              ->setFigure($figure);
+            ->setFigure($figure);
 
         $this->assertTrue($video->getUrl() === 'name');
         $this->assertTrue($video->getFigure() === $figure);
@@ -26,7 +26,7 @@ class VideoUnitTest extends TestCase
         $figure = new Figure();
 
         $video->setUrl('name')
-              ->setFigure($figure);
+            ->setFigure($figure);
 
         $this->assertFalse($video->getUrl() === 'false');
         $this->assertFalse($video->getFigure() === new Figure);

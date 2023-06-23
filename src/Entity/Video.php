@@ -61,7 +61,7 @@ class Video
         return $this->videoFile;
     }
 
-    public function setVideoFile(File $url= null)
+    public function setVideoFile(File $url = null)
     {
         $this->videoFile = $url;
 

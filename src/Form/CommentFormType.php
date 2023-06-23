@@ -15,8 +15,7 @@ class CommentFormType extends AbstractType
         $builder
             ->add('message', TextareaType::class, [
                 'required' => false
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

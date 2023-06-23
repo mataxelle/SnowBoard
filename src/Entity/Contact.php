@@ -32,15 +32,16 @@ class Contact
     #[Assert\Email(message: 'Cet email est invalide')]
     #[Assert\Length(
         min: 2,
-        max: 180)]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+        max: 180
+    )]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $email = null;
 
     #[ORM\Column(length: 180)]
     private ?string $subject = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message:'Ce champ ne peut pas être vide')]
+    #[Assert\NotBlank(message: 'Ce champ ne peut pas être vide')]
     private ?string $message = null;
 
     #[ORM\Column]

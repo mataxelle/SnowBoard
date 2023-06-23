@@ -24,7 +24,7 @@ class UserController extends AbstractController
     public function edit(User $user, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         $form = $this->createForm(UserProfileEditFormType::class, $user);
-        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class UserController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $this->denyAccessUnlessGranted('ROLE_USER');
-        
+
         if ($user) {
             $entityManagerInterface->remove($user);
             $entityManagerInterface->flush();
