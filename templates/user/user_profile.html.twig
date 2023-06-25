@@ -85,9 +85,9 @@
 								<div class="row">
 									<h5 class="col-8 card-title">{{ figure.name }}</h5>
 									<div class="col-4">
-										<button type="button" class="col btn btn-success" data-bs-toggle="modal" data-bs-target="#deleteModal">
+										<a type="button" class="col btn btn-success" href="{{ path('figure_edit', {'id' : figure.id}) }}">
 											<i class="fas fa-edit"></i>
-										</button>
+										</a>
 										<button type="button" class="col btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
 											<i class="fas fa-trash"></i>
 										</button>

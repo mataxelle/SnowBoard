@@ -15,7 +15,7 @@ class ImageFormType extends AbstractType
         $builder
             ->add('imageFile', VichFileType::class, [
                 'required' => false,
-                'download_uri' => true
+                'download_uri' => false
             ]);
     }
 

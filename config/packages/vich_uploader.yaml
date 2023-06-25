@@ -7,12 +7,24 @@ vich_uploader:
       upload_destination: "%kernel.project_dir%/public%app.path.image_profile%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true
+
     image_figure:
       uri_prefix: '%app.path.image_figure%'
       upload_destination: "%kernel.project_dir%/public%app.path.image_figure%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true
+
     video_figure:
       uri_prefix: '%app.path.video_figure%'
       upload_destination: "%kernel.project_dir%/public%app.path.video_figure%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+    
+      inject_on_load: false
+      delete_on_update: true
+      delete_on_remove: true

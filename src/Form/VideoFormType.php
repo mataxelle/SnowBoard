@@ -15,7 +15,7 @@ class VideoFormType extends AbstractType
         $builder
             ->add('videoFile', VichFileType::class, [
                 'required' => false,
-                'download_uri' => true
+                'download_uri' => false
             ]);
     }
 

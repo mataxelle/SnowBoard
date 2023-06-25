@@ -123,6 +123,51 @@ class FigureController extends AbstractController
         ]);
     }
 
+    #[Route('/figure/{id}/edit', name: 'figure_edit')]
+    public function edit(?figure $figure, Request $request, EntityManagerInterface $entityManagerInterface): Response
+    {
+        $oldImage = $figure->getImages();
+
+        $form = $this->createForm(FigureFormType::class, $figure);
+
+        $form->handleRequest($request);
+
+        $figure->setCreatedBy($this->getUser());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $images = $form->getData()->getImages();
+
+            foreach ($images as $img) {
+                $img->setFigure($figure);
+                $figure->addImage($img);
+            }
+
+            $videos = $form->getData()->getVideos();
+
+            foreach ($videos as $video) {
+                $video->setFigure($figure);
+                $figure->addVideo($video);
+            }
+
+            $figure = $form->getData();
+
+            $entityManagerInterface->persist($figure);
+            $entityManagerInterface->flush();
+
+            $this->addFlash(
+                'message',
+                'Votre figure a été modifiée avec succès !'
+            );
+
+            return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
+        }
+
+        return $this->render('figure/figure_edit.html.twig', [
+            'figureCreateForm' => $form->createView(),
+        ]);
+    }
+
     /**
      * Delete a figure
      *
