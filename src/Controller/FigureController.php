@@ -8,6 +8,8 @@ use App\Form\CommentFormType;
 use App\Form\FigureFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +37,7 @@ class FigureController extends AbstractController
      * @param  mixed $entityManagerInterface
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') || is_granted('ROLE_ADMIN')")]
     #[Route('/figure/add', name: 'figure_add')]
     public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -123,11 +126,18 @@ class FigureController extends AbstractController
         ]);
     }
 
+    /**
+     * Edit a figure
+     *
+     * @param  mixed $figure
+     * @param  mixed $request
+     * @param  mixed $entityManagerInterface
+     * @return Response
+     */
+    #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]
     #[Route('/figure/{id}/edit', name: 'figure_edit')]
     public function edit(?figure $figure, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
-        $oldImage = $figure->getImages();
-
         $form = $this->createForm(FigureFormType::class, $figure);
 
         $form->handleRequest($request);
@@ -175,6 +185,7 @@ class FigureController extends AbstractController
      * @param  mixed $entityManagerInterface
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]
     #[Route('/figure/{id}/delete', name: 'figure_delete')]
     public function delete(?Figure $figure, EntityManagerInterface $entityManagerInterface): Response
     {

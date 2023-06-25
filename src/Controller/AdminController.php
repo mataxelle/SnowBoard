@@ -8,6 +8,9 @@ use App\Repository\ContactRepository;
 use App\Repository\FigureRepository;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,6 +24,7 @@ class AdminController extends AbstractController
      *
      * @return void
      */
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/', name: 'board')]
     public function index(
         UserRepository $userRepository,
@@ -49,6 +53,7 @@ class AdminController extends AbstractController
      * @param  mixed $request
      * @return Response
      */
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/users', name: 'users')]
     public function users(UserRepository $userRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
@@ -84,6 +89,7 @@ class AdminController extends AbstractController
      * @param  mixed $request
      * @return Response
      */
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/figures', name: 'figures')]
     public function figures(FigureRepository $figureRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
@@ -108,6 +114,7 @@ class AdminController extends AbstractController
      * @param  mixed $request
      * @return Response
      */
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/comments', name: 'comments')]
     public function comments(CommentRepository $commentRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {
@@ -132,6 +139,7 @@ class AdminController extends AbstractController
      * @param  mixed $request
      * @return Response
      */
+    #[Security("is_granted('ROLE_ADMIN')")]
     #[Route('/contacts', name: 'contacts')]
     public function contacts(ContactRepository $contactRepository, PaginatorInterface $paginatorInterface, Request $request): Response
     {

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserProfileEditFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ class UserController extends AbstractController
      * @param  mixed $user
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user || is_granted('ROLE_ADMIN')")]
     #[Route('/profile/{id}', name: 'user_profile')]
     public function profile(User $user): Response
     {
@@ -34,6 +36,7 @@ class UserController extends AbstractController
      * @param  mixed $entityManagerInterface
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user || is_granted('ROLE_ADMIN')")]
     #[Route('/profile/{id}/edit', name: 'user_profile_edit')]
     public function edit(User $user, Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
@@ -69,7 +72,7 @@ class UserController extends AbstractController
      * @param  mixed $entityManagerInterface
      * @return Response
      */
-    #[Route('/profile/{id}/delete', name: 'user_profile_delete')]
+    #[Security("is_granted('ROLE_USER') and user || is_granted('ROLE_ADMIN')")]
     public function delete(?User $user, EntityManagerInterface $entityManagerInterface): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
