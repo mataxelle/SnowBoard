@@ -78,3 +78,25 @@ div .comments:nth-child(odd) {
 div .comments:nth-child(even) {
   background-color: #fff;
 }
+
+.ancre {
+  /*height: 50px;
+  width: 50px;
+  background: crimson;
+  border-radius: 50%;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+}
+
+.icone {
+  width: 50px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
