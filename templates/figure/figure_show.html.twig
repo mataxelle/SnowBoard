@@ -13,6 +13,13 @@
 		{% endfor %}
 	</div>
 
+	{% if figure.createdBy == app.user %}
+	<div class="row mt-5">
+		<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col-2 offset-9 btn btn-success">Modifier</a>
+	</div>
+	{% endif %}
+	
+
 	<h1 class="figureName text-center my-5">
 		{{ figure.name }}
 	</h1>
@@ -96,13 +103,26 @@
 
 				<hr/>
 
-				<div class="d-flex justify-content-end">
-					<span class="text-muted">
+				<div class="d-flex justify-content-center">
+					<span class="badge text-bg-light">
 						<em>
-							Publié le
-							{{ figure.updatedAt|date('d/m/Y') }}
+							{{ figure.category }}
 						</em>
 					</span>
+					<span class="badge text-bg-light">
+						<em>
+							Publié le
+							{{ figure.createdAt|date('d/m/Y') }}
+						</em>
+					</span>
+					{% if figure.updatedAt != figure.createdAt %}
+						<span class="badge text-bg-light">
+							<em>
+								Modifier le
+								{{ figure.updatedAt|date('d/m/Y') }}
+							</em>
+						</span>
+					{% endif %}
 				</div>
 
 				<hr/>
@@ -141,9 +161,9 @@
 						</a>
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							              Distinctio est ab iure inventore dolorum consectetur? Molestiae
-							              aperiam atque quasi consequatur aut? Repellendus alias dolor ad
-							              nam, soluta distinctio quis accusantium!
+																					              Distinctio est ab iure inventore dolorum consectetur? Molestiae
+																					              aperiam atque quasi consequatur aut? Repellendus alias dolor ad
+																					              nam, soluta distinctio quis accusantium!
 						</p>
 					</div>
 				</div>

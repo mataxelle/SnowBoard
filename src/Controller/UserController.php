@@ -73,6 +73,7 @@ class UserController extends AbstractController
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user || is_granted('ROLE_ADMIN')")]
+    #[Route('/profile/{id}/delete', name: 'user_profile_delete')]
     public function delete(?User $user, EntityManagerInterface $entityManagerInterface): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
