@@ -263,4 +263,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->firstname;
     }
+
+    /**
+     * Return only the security relevant data
+     *
+     * @return array
+     */
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'password' => $this->password,
+        ];
+    }
+
+    /**
+     * Restore security relevant data
+     *
+     * @param array $data
+     */
+    public function __unserialize(array $data): void
+    {
+        $this->id = $data['id'];
+        $this->email = $data['email'];
+        $this->password = $data['password'];
+    }
 }
