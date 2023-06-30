@@ -30,7 +30,12 @@ class ResetPasswordController extends AbstractController
     }
 
     /**
-     * Display & process form to request a password reset.
+     * Display & process form to request a password reset
+     *
+     * @param  Request             $request Request
+     * @param  Mailjet             $mailjet Mailjet
+     * @param  TranslatorInterface $translator TranslatorInterface
+     * @return Response
      */
     #[Route('', name: 'app_forgot_password_request')]
     public function request(Request $request, Mailjet $mailjet, TranslatorInterface $translator): Response
@@ -46,13 +51,13 @@ class ResetPasswordController extends AbstractController
             );
         }
 
-        return $this->render('reset_password/request.html.twig', [
-            'requestForm' => $form->createView(),
-        ]);
+        return $this->render('reset_password/request.html.twig', ['requestForm' => $form->createView(),]);
     }
 
     /**
-     * Confirmation page after a user has requested a password reset.
+     * Confirmation page after a user has requested a password reset
+     *
+     * @return Response
      */
     #[Route('/check-email', name: 'app_check_email')]
     public function checkEmail(): Response
@@ -63,13 +68,17 @@ class ResetPasswordController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
-        return $this->render('reset_password/check_email.html.twig', [
-            'resetToken' => $resetToken,
-        ]);
+        return $this->render('reset_password/check_email.html.twig', ['resetToken' => $resetToken]);
     }
 
     /**
-     * Validates and process the reset URL that the user clicked in their email.
+     * Validates and process the reset URL that the user clicked in their email
+     *
+     * @param  Request                     $request Request
+     * @param  UserPasswordHasherInterface $passwordHasher UserPasswordHasherInterface
+     * @param  TranslatorInterface         $translator TranslatorInterface
+     * @param  string                      $token Token
+     * @return Response
      */
     #[Route('/reset/{token}', name: 'app_reset_password')]
     public function reset(Request $request, UserPasswordHasherInterface $passwordHasher, TranslatorInterface $translator, string $token = null): Response
@@ -122,11 +131,17 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('reset_password/reset.html.twig', [
-            'resetForm' => $form->createView(),
-        ]);
+        return $this->render('reset_password/reset.html.twig', ['resetForm' => $form->createView()]);
     }
 
+    /**
+     * processSendingPasswordResetEmail
+     *
+     * @param  string              $emailFormData EmailFormData
+     * @param  Mailjet             $mailjet Mailjet
+     * @param  TranslatorInterface $translator TranslatorInterface
+     * @return RedirectResponse
+     */
     private function processSendingPasswordResetEmail(string $emailFormData, Mailjet $mailjet, TranslatorInterface $translator): RedirectResponse
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([

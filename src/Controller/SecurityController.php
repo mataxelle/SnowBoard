@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     /**
      * Logg a user
      *
-     * @param  mixed $authenticationUtils
+     * @param  AuthenticationUtils $authenticationUtils AuthenticationUtils
      * @return Response
      */
     #[Route(path: '/login', name: 'app_login')]
@@ -51,10 +51,10 @@ class SecurityController extends AbstractController
     /**
      * Register a user
      *
-     * @param  mixed $request
-     * @param  mixed $userPasswordHasher
-     * @param  mixed $entityManager
-     * @param  mixed $mailjet
+     * @param  Request                     $request Request
+     * @param  UserPasswordHasherInterface $userPasswordHasher UserPasswordHasher
+     * @param  EntityManagerInterface      $entityManager EntityManagerInterface
+     * @param  Mailjet                     $mailjet Mailjet
      * @return Response
      */
     #[Route(path: '/register', name: 'app_register')]
@@ -87,8 +87,6 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('security/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+        return $this->render('security/register.html.twig', ['registrationForm' => $form->createView()]);
     }
 }

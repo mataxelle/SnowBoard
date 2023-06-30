@@ -21,17 +21,23 @@ class AppFixtures extends Fixture
     {
         $this->passwordHasher = $passwordHasher;
     }
-
+    
+    /**
+     * load
+     *
+     * @param  ObjectManager $manager Manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
-        //Faker
+        // Faker
         $faker = Factory::create('fr_FR');
-        //To keep the same fixtures
+        // To keep the same fixtures
         $faker->seed(2005);
 
         $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
 
-        //User admin fixtures
+        // User admin fixtures
         $admin = new User();
 
         $admin->setEmail('admin@test.com')
@@ -40,13 +46,13 @@ class AppFixtures extends Fixture
             ->setLastname($faker->lastName())
             ->setImageProfile($faker->imageUrl());
 
-        //Password hash
+        // Password hash
         $password = $this->passwordHasher->hashPassword($admin, 'azertyuiop');
         $admin->setPassword($password);
 
         $manager->persist($admin);
 
-        //User fixtures
+        // User fixtures
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
 
@@ -56,14 +62,14 @@ class AppFixtures extends Fixture
                 ->setLastname($faker->lastName())
                 ->setImageProfile($faker->imageUrl());
 
-            //Password hash
+            // Password hash
             $password = $this->passwordHasher->hashPassword($user, 'azertyuiop');
             $user->setPassword($password);
 
             $manager->persist($user);
         }
 
-        //Categories fixtures
+        // Categories fixtures
         for ($l = 0; $l < 10; $l++) {
             $categorie = new Category();
 
@@ -73,7 +79,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($categorie);
 
-            //Figure fixture
+            // Figure fixture
             for ($m = 0; $m < 2; $m++) {
                 $figure = new Figure();
 
@@ -84,7 +90,7 @@ class AppFixtures extends Fixture
 
                 $manager->persist($figure);
 
-                //Image fixtures
+                // Image fixtures
                 for ($j = 0; $j < 4; $j++) {
                     $image = new Image();
 
@@ -94,7 +100,7 @@ class AppFixtures extends Fixture
                     $manager->persist($image);
                 }
 
-                //Video fixtures
+                // Video fixtures
                 for ($k = 0; $k < 2; $k++) {
                     $video = new Video();
 
@@ -104,7 +110,7 @@ class AppFixtures extends Fixture
                     $manager->persist($video);
                 }
 
-                //Comment fixtures
+                // Comment fixtures
                 for ($n = 0; $n < 4; $n++) {
                     $comment = new Comment();
 

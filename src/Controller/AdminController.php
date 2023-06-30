@@ -8,8 +8,6 @@ use App\Repository\ContactRepository;
 use App\Repository\FigureRepository;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,20 +35,23 @@ class AdminController extends AbstractController
         $comments = $commentRepository->getCommentsCount();
         $contacts = $contactRepository->getContactsCount();
 
-        return $this->render('admin/index.html.twig', [
-            'users' => $users,
-            'figures' => $figures,
-            'comments' => $comments,
-            'contacts' => $contacts,
-        ]);
+        return $this->render(
+            'admin/index.html.twig',
+            [
+                'users'    => $users,
+                'figures'  => $figures,
+                'comments' => $comments,
+                'contacts' => $contacts,
+            ]
+        );
     }
 
     /**
      * Display all users
      *
-     * @param  mixed $userRepository
-     * @param  mixed $paginatorInterface
-     * @param  mixed $request
+     * @param  UserRepository     $userRepository UserRepository
+     * @param  PaginatorInterface $paginatorInterface PaginatorInterface
+     * @param  Request            $request Request
      * @return Response
      */
     #[Security("is_granted('ROLE_ADMIN')")]
@@ -64,13 +65,16 @@ class AdminController extends AbstractController
             10
         );
 
-        return $this->render('admin/users.html.twig', [
-            'users' => $users,
-            'usersCount' => $data
-        ]);
+        return $this->render(
+            'admin/users.html.twig',
+            [
+                'users'      => $users,
+                'usersCount' => $data
+            ]
+        );
     }
 
-    //A faire
+    // A faire
     #[Route('/user/{id}', name: 'user_profile')]
     public function profile(?User $user): Response
     {
@@ -84,9 +88,9 @@ class AdminController extends AbstractController
     /**
      * Display all figures
      *
-     * @param  mixed $figureRepository
-     * @param  mixed $paginatorInterface
-     * @param  mixed $request
+     * @param  FigureRepository   $figureRepository FigureRepository
+     * @param  PaginatorInterface $paginatorInterface PaginatorInterface
+     * @param  Request            $request Request
      * @return Response
      */
     #[Security("is_granted('ROLE_ADMIN')")]
@@ -100,18 +104,21 @@ class AdminController extends AbstractController
             10
         );
 
-        return $this->render('admin/figures.html.twig', [
-            'figures' => $figures,
-            'figuresCount' => $data
-        ]);
+        return $this->render(
+            'admin/figures.html.twig',
+            [
+                'figures'      => $figures,
+                'figuresCount' => $data
+            ]
+        );
     }
 
     /**
      * Display all comments
      *
-     * @param  mixed $commentRepository
-     * @param  mixed $paginatorInterface
-     * @param  mixed $request
+     * @param  CommentRepository  $commentRepository CommentRepository
+     * @param  PaginatorInterface $paginatorInterface PaginatorInterface
+     * @param  Request            $request Request
      * @return Response
      */
     #[Security("is_granted('ROLE_ADMIN')")]
@@ -125,18 +132,21 @@ class AdminController extends AbstractController
             10
         );
 
-        return $this->render('admin/comments.html.twig', [
-            'comments' => $comments,
-            'commentsCount' => $data
-        ]);
+        return $this->render(
+            'admin/comments.html.twig',
+            [
+                'comments'      => $comments,
+                'commentsCount' => $data
+            ]
+        );
     }
 
     /**
      * Display all contacts
      *
-     * @param  mixed $contactRepository
-     * @param  mixed $paginatorInterface
-     * @param  mixed $request
+     * @param  ContactRepository  $contactRepository ContactRepository
+     * @param  PaginatorInterface $paginatorInterface PaginatorInterface
+     * @param  Request            $request Request
      * @return Response
      */
     #[Security("is_granted('ROLE_ADMIN')")]
@@ -150,9 +160,12 @@ class AdminController extends AbstractController
             10
         );
 
-        return $this->render('admin/contacts.html.twig', [
-            'contacts' => $contacts,
-            'contactsCount' => $data
-        ]);
+        return $this->render(
+            'admin/contacts.html.twig',
+            [
+                'contacts'      => $contacts,
+                'contactsCount' => $data
+            ]
+        );
     }
 }

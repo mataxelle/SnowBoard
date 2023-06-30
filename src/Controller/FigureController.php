@@ -8,7 +8,6 @@ use App\Form\CommentFormType;
 use App\Form\FigureFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,21 +24,19 @@ class FigureController extends AbstractController
     #[Route('/figure', name: 'figures_all')]
     public function index(): Response
     {
-        return $this->render('figure/index.html.twig', [
-            'controller_name' => 'FigureController',
-        ]);
+        return $this->render('figure/index.html.twig', ['controller_name' => 'FigureController']);
     }
 
     /**
      * Create a Figure
      *
-     * @param  mixed $request
-     * @param  mixed $entityManagerInterface
+     * @param  Request                $request Request
+     * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') || is_granted('ROLE_ADMIN')")]
     #[Route('/figure/add', name: 'figure_add')]
-    public function add(Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function add(Request $request, EntityManagerInterface $entityManager): Response
     {
         $figure = new Figure();
         $form = $this->createForm(FigureFormType::class, $figure);
@@ -66,8 +63,8 @@ class FigureController extends AbstractController
 
             $figure = $form->getData();
 
-            $entityManagerInterface->persist($figure);
-            $entityManagerInterface->flush();
+            $entityManager->persist($figure);
+            $entityManager->flush();
 
             $this->addFlash(
                 'message',
@@ -77,18 +74,16 @@ class FigureController extends AbstractController
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
-        return $this->render('figure/figure_create.html.twig', [
-            'figureCreateForm' => $form->createView(),
-        ]);
+        return $this->render('figure/figure_create.html.twig', ['figureCreateForm' => $form->createView()]);
     }
 
     /**
      * Show a figure
      *
-     * @param  mixed $figure
-     * @param  mixed $request
-     * @param  mixed $entityManagerInterface
-     * @param  mixed $paginationInterface
+     * @param  Figure                 $figure Figure
+     * @param  Request                $request Request
+     * @param  EntityManagerInterface $entityManager EntityManager
+     * @param  PaginatorInterface     $paginationInterface PaginatorInterface
      * @return Response
      */
     #[Route('/figure/{slug}', name: 'figure_show')]
@@ -119,24 +114,27 @@ class FigureController extends AbstractController
         $data = $figure->getComments();
         $comments = $paginationInterface->paginate($data, $request->query->getInt('page', 1), 10);
 
-        return $this->render('figure/figure_show.html.twig', [
-            'figure' => $figure,
-            'commentForm' => $form->createView(),
-            'comments' => $comments
-        ]);
+        return $this->render(
+            'figure/figure_show.html.twig',
+            [
+                'figure'      => $figure,
+                'commentForm' => $form->createView(),
+                'comments'    => $comments
+            ]
+        );
     }
 
     /**
      * Edit a figure
      *
-     * @param  mixed $figure
-     * @param  mixed $request
-     * @param  mixed $entityManagerInterface
+     * @param  Figure                 $figure Figure
+     * @param  Request                $request Request
+     * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]
     #[Route('/figure/{id}/edit', name: 'figure_edit')]
-    public function edit(?figure $figure, Request $request, EntityManagerInterface $entityManagerInterface): Response
+    public function edit(?figure $figure, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(FigureFormType::class, $figure);
 
@@ -162,8 +160,8 @@ class FigureController extends AbstractController
 
             $figure = $form->getData();
 
-            $entityManagerInterface->persist($figure);
-            $entityManagerInterface->flush();
+            $entityManager->persist($figure);
+            $entityManager->flush();
 
             $this->addFlash(
                 'message',
@@ -173,16 +171,14 @@ class FigureController extends AbstractController
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
 
-        return $this->render('figure/figure_edit.html.twig', [
-            'figureCreateForm' => $form->createView(),
-        ]);
+        return $this->render('figure/figure_edit.html.twig', ['figureCreateForm' => $form->createView()]);
     }
 
     /**
      * Delete a figure
      *
-     * @param  mixed $figure
-     * @param  mixed $entityManagerInterface
+     * @param  Figure                 $figure Figure
+     * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]

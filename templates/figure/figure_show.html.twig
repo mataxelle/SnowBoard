@@ -14,44 +14,40 @@
 	</div>
 
 	{% if figure.createdBy == app.user %}
-	<div class="row mt-5">
-		<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col-2 offset-9 btn btn-success">Modifier</a>
-	</div>
+		<div class="row mt-5">
+			<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col-2 offset-9 btn btn-success">Modifier</a>
+		</div>
 	{% endif %}
-	
+
 
 	<h1 class="figureName text-center my-5">
 		{{ figure.name }}
 	</h1>
 
-	<div class="container text-center my-3">
-		<div class="row mx-auto my-auto justify-content-center">
+	<div class="row mb-5">
+		<div class="col-6 offset-3">
 			{% if figure.images %}
-				<div id="imageCarousel" class="carousel slide" data-interval="false" data-bs-ride="carousel">
-					<ol class="carousel-indicators">
-						{% for i in 0..figure.images|length %}
-							<li data-target="#imageCarousel" data-slide-to="{{ i }}" class="active"></li>
-						{% endfor %}
-					</ol>
+				<div id="carouselExample" class="carousel slide">
 					<div class="carousel-inner">
 						{% for image in figure.images %}
 							<div class="carousel-item {% if loop.first %} active {% endif %}">
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-img">
-											<img data-photoswipe-loop="{{ loop.index0 }}" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="figure image" class="figure-thumbnail"/>
-										</div>
-									</div>
-								</div>
+								<img class="d-block w-100" data-photoswipe-loop="{{ loop.index0 }}" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="figure image"/>
 							</div>
 						{% endfor %}
 					</div>
-					<a class="carousel-control-prev bg-transparent w-aut" href="#imageCarousel" role="button" data-slide="prev">
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					</a>
-					<a class="carousel-control-next bg-transparent w-aut" href="#imageCarousel" role="button" data-slide="next">
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					</a>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			{% else %}
+				<p>Pas d'image</p>
+				<div class="col-6">
+					<img class="img-fluid" src="/assets/images/snow1.jpg" alt="image de code"/>
 				</div>
 			{% endif %}
 		</div>
@@ -61,44 +57,31 @@
 		<div class="col-10 col-md-8 col-lg-8 mx-auto">
 			<div class="border-0">
 				{% if figure.images|length > 0 %}
-					<div class="lightbox-gallery">
+					<h3>Images</h3>
+					<div class="lightbox-gallery mb-5">
 						<div class="container">
-							<div class="row images">
-								{% for image in figure.images %}
-									<div class="col-md-4">
-										<a href="{{ vich_uploader_asset(image, 'imageFile') }}" data-toggle="lightbox" data-gallery="example-gallery">
-											<img class="figure-thumbnail" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="image"/>
-										</a>
-									</div>
-								{% endfor %}
-							</div>
+							{% for image in figure.images %}
+								<a href="{{ vich_uploader_asset(image, 'imageFile') }}" data-toggle="lightbox" data-gallery="example-gallery">
+									<img class="figure-thumbnail" src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="image"/>
+								</a>
+							{% endfor %}
 						</div>
-					</div>
-				{% else %}
-					<p>Pas d'image</p>
-					<div class="col-6">
-						<img class="img-fluid" src="/assets/images/snow1.jpg" alt="image de code"/>
 					</div>
 				{% endif %}
 
 				{% if figure.videos|length > 0 %}
-					<div class="lightbox-gallery">
+					<h4>Vidéos</h4>
+					<div class="lightbox-gallery mb-5">
 						<div class="container">
-							<div class="row images">
-								{% for video in figure.videos %}
-									<div class="col-md-4">
-										<a href="{{ vich_uploader_asset(video, 'videoFile') }}" data-toggle="lightbox" data-gallery="example-gallery">
-											<video class="figure-thumbnail">
-												<source src="{{ vich_uploader_asset(video, 'videoFile') }}" type="video/mp4">
-											</video>
-										</a>
-									</div>
-								{% endfor %}
-							</div>
+							{% for video in figure.videos %}
+								<a href="{{ vich_uploader_asset(video, 'videoFile') }}" data-toggle="lightbox" data-gallery="example-gallery">
+									<video class="figure-thumbnail">
+										<source src="{{ vich_uploader_asset(video, 'videoFile') }}" type="video/mp4">
+									</video>
+								</a>
+							{% endfor %}
 						</div>
 					</div>
-				{% else %}
-					<p>Pas de videos</p>
 				{% endif %}
 
 				<hr/>
@@ -161,9 +144,9 @@
 						</a>
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-																					              Distinctio est ab iure inventore dolorum consectetur? Molestiae
-																					              aperiam atque quasi consequatur aut? Repellendus alias dolor ad
-																					              nam, soluta distinctio quis accusantium!
+																																																																						              Distinctio est ab iure inventore dolorum consectetur? Molestiae
+																																																																						              aperiam atque quasi consequatur aut? Repellendus alias dolor ad
+																																																																						              nam, soluta distinctio quis accusantium!
 						</p>
 					</div>
 				</div>

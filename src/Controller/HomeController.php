@@ -14,9 +14,9 @@ class HomeController extends AbstractController
     /**
      * Display all figures
      *
-     * @param  mixed $figureRepository
-     * @param  mixed $request
-     * @param  mixed $paginationInterface
+     * @param  FigureRepository $figureRepository FigureRepository
+     * @param  Request $request Request
+     * @param  PaginatorInterface $paginationInterface PaginatorInterface
      * @return Response
      */
     #[Route('/', name: 'home')]
@@ -28,8 +28,6 @@ class HomeController extends AbstractController
             $request->query->getInt('page', 1),
             9
         );
-        return $this->render('home/index.html.twig', [
-            'figures' => $figures,
-        ]);
+        return $this->render('home/index.html.twig', ['figures' => $figures]);
     }
 }

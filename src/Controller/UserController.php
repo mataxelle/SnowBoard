@@ -29,8 +29,8 @@ class UserController extends AbstractController
     /**
      * Edit a profile
      *
-     * @param  User $user user
-     * @param  Request $request Request
+     * @param  User                   $user User
+     * @param  Request                $request Request
      * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
@@ -69,7 +69,7 @@ class UserController extends AbstractController
     /**
      * Delete a profile
      *
-     * @param  User $user User
+     * @param  User                   $user User
      * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */

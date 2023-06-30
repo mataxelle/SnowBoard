@@ -10,12 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CommentController extends AbstractController
-{ 
+{
     /**
      * Delete a comment
      *
-     * @param  mixed $entityManagerInterface
-     * @param  mixed $comment
+     * @param  EntityManagerInterface $entityManagerInterface EntityManagerInterface
+     * @param  Comment                $comment Comment
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]

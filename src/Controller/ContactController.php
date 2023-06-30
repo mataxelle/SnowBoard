@@ -17,9 +17,9 @@ class ContactController extends AbstractController
     /**
      * Create a message
      *
-     * @param  mixed $request
-     * @param  mixed $entityManagerInterface
-     * @param  mixed $mailjet
+     * @param  Request                $request Request
+     * @param  EntityManagerInterface $entityManagerInterface EntityManagerInterface
+     * @param  Mailjet                $mailjet Mailjet
      * @return Response
      */
     #[Route('', name: 'add')]
@@ -62,16 +62,19 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('app_contact_add');
         }
 
-        return $this->render('contact/contact_create.html.twig', [
-            'contactCreateForm' => $form->createView(),
-            'user'
-        ]);
+        return $this->render(
+            'contact/contact_create.html.twig',
+            [
+                'contactCreateForm' => $form->createView(),
+                'user'
+            ]
+        );
     }
 
     /**
      * Show a message
      *
-     * @param  mixed $contact
+     * @param  Contact $contact Contact
      * @return Response
      */
     #[Route('/{id}', name: 'show')]
@@ -81,16 +84,14 @@ class ContactController extends AbstractController
             return $this->redirectToRoute('app_admin_contacts');
         }
 
-        return $this->render('contact/contact_show.html.twig', [
-            'contact' => $contact,
-        ]);
+        return $this->render('contact/contact_show.html.twig', ['contact' => $contact]);
     }
 
     /**
      * Delete a message
      *
-     * @param  mixed $contact
-     * @param  mixed $entityManagerInterface
+     * @param  Contact                $contact Contact
+     * @param  EntityManagerInterface $entityManagerInterface EntityManagerInterface
      * @return Response
      */
     #[Route('/{id}/delete', name: 'delete')]
