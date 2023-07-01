@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserProfileEditFormType extends AbstractType
 {
@@ -28,11 +28,10 @@ class UserProfileEditFormType extends AbstractType
                 ]
             )
             ->add(
-                'imageProfileFile', VichFileType::class,
+                'imageProfileFile', VichImageType::class,
                 [
                     'required'   => false,
-                    'data_class' => null,
-                    'empty_data' => ''
+                    'download_uri' => false,
                 ]
             )
             ->add(

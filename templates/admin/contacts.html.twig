@@ -9,7 +9,7 @@
         <h1 class="col text-center mt-5 mb-5">liste des messages</h1>
     </div>
 
-    <div class="col-4 offset-4">
+    <div class="col-10 offset-1">
 			{% for message in app.flashes('message') %}
 				<div class="alert alert-success" role="alert">
 					<P>{{ message }}</p>

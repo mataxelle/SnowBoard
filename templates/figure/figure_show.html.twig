@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="col-4 offset-4">
+	<div class="col-10 offset-1 mt-5">
 		{% for message in app.flashes('message') %}
 			<div class="alert alert-success" role="alert">
 				<P>{{ message }}</p>
@@ -15,7 +15,7 @@
 
 	{% if figure.createdBy == app.user %}
 		<div class="row mt-5">
-			<a href="{{ path('user_profile_edit', {'id' : app.user.id}) }}" class="col-2 offset-9 btn btn-success">Modifier</a>
+			<a href="{{ path('figure_edit', {'id' : figure.id}) }}" class="col-4 offset-6 col-md-2 offset-md-9 btn btn-success">Modifier</a>
 		</div>
 	{% endif %}
 

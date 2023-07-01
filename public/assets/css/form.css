@@ -1,3 +1,11 @@
 .input-field span.error {
   color: red;
 }
+
+.form-image img {
+  width: 200px;
+}
+
+ul {
+  padding-left: 0rem !important;
+}

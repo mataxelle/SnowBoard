@@ -1,4 +1,4 @@
-{{ form_start(figureCreateForm, {'attr': {'class': 'col-6 offset-md-3 mb-5'}}) }}
+{{ form_start(figureCreateForm, {'attr': {'class': 'col-12 col-md-10 col-lg-7 mx-auto mb-5'}}) }}
 <div class="input-field mb-3">
 	{{ form_label(figureCreateForm.name, 'Titre') }}
 	{{ form_widget(figureCreateForm.name, {'attr': {'class': 'form-control'}}) }}
@@ -8,7 +8,7 @@
 	{{ form_label(figureCreateForm.category, 'Catégorie') }}
 	{{ form_widget(figureCreateForm.category, {'attr': {'class': 'form-control'}}) }}
 </div>
-<div class="input-field">
+<div class="input-field mb-3">
 	{{ form_label(figureCreateForm.description, 'Description') }}
 	{{ form_widget(figureCreateForm.description, {'attr': {'class': 'form-control'}}) }}
 	<span class="error">{{ form_errors(figureCreateForm.description) }}</span>
@@ -20,6 +20,6 @@
     {% include "includes/forms/videosForm.html.twig" %}
 </div>
 <div class="mb-3">
-	<input type="submit" class="btn btn-primary" value="Ajouter" formnovalidate>
+	<input type="submit" class="btn btn-primary" value="{{ formButton }}" formnovalidate>
 </div>
 {{ form_end(figureCreateForm) }}

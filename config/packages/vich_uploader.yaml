@@ -1,13 +1,16 @@
 vich_uploader:
   db_driver: orm
 
+  metadata:
+    type: attribute
+
   mappings:
     image_profile:
       uri_prefix: '%app.path.image_profile%'
       upload_destination: "%kernel.project_dir%/public%app.path.image_profile%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-      inject_on_load: false
+      inject_on_load: true
       delete_on_update: true
       delete_on_remove: true
 
@@ -16,7 +19,7 @@ vich_uploader:
       upload_destination: "%kernel.project_dir%/public%app.path.image_figure%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
-      inject_on_load: false
+      inject_on_load: true
       delete_on_update: true
       delete_on_remove: true
 
@@ -25,6 +28,6 @@ vich_uploader:
       upload_destination: "%kernel.project_dir%/public%app.path.video_figure%"
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
     
-      inject_on_load: false
+      inject_on_load: true
       delete_on_update: true
       delete_on_remove: true
