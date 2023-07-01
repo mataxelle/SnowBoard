@@ -21,38 +21,43 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
-            ->add('imageProfileFile', VichFileType::class, [
-                'required' => false,
-                'data_class' => null,
-                'empty_data' => ''
-            ])
+            ->add(
+                'imageProfileFile', VichFileType::class,
+                [
+                    'required'   => false,
+                    'data_class' => null,
+                    'empty_data' => ''
+                ]
+            )
             ->add('email', EmailType::class)
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options' => [
-                    'label' => 'Mot de passe',
-                ],
-                'second_options' => [
-                    'label' => 'Confirmation du mot de passe',
-                ],
-                'invalid_message' => 'Les mots de passe ne sont pas identiques',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        'max' => 4096,
-                    ]),
-                ],
-            ]);
+            ->add(
+                'password', RepeatedType::class,
+                [
+                    'type' => PasswordType::class,
+                    'first_options' => [
+                        'label' => 'Mot de passe',
+                    ],
+                    'second_options' => [
+                        'label' => 'Confirmation du mot de passe',
+                    ],
+                    'invalid_message' => 'Les mots de passe ne sont pas identiques',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Please enter a password',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => 'Your password should be at least {{ limit }} characters',
+                            'max' => 4096,
+                        ]),
+                    ],
+                ]
+            )
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+        $resolver->setDefaults(['data_class' => User::class]);
     }
 }

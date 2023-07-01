@@ -6,9 +6,20 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 class MailerService
-{
+{    
+    /**
+     * mailer
+     *
+     * @var mixed
+     */
     private $mailer;
 
+    /**
+     * Constructor
+     *
+     * @param MailerInterface $mailer Mailer
+     * @return void
+     */
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;

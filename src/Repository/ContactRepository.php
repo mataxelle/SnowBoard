@@ -38,7 +38,12 @@ class ContactRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
+    /**
+     * getContactsCount
+     *
+     * @return int
+     */
     public function getContactsCount(): int
     {
         $result = $this->createQueryBuilder('c')
@@ -48,7 +53,12 @@ class ContactRepository extends ServiceEntityRepository
 
         return $result;
     }
-
+    
+    /**
+     * getContactsByDate
+     *
+     * @return array
+     */
     public function getContactsByDate(): array
     {
         return $this->createQueryBuilder('c')

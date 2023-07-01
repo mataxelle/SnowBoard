@@ -14,17 +14,17 @@ class CommentController extends AbstractController
     /**
      * Delete a comment
      *
-     * @param  EntityManagerInterface $entityManagerInterface EntityManagerInterface
-     * @param  Comment                $comment Comment
+     * @param  EntityManagerInterface $entityManager EntityManager
+     * @param  Comment                $comment       Comment
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]
     #[Route('/comment/{id}/delete', name: 'comment_delete')]
-    public function delete(EntityManagerInterface $entityManagerInterface, ?Comment $comment): Response
+    public function delete(EntityManagerInterface $entityManager, ?Comment $comment): Response
     {
         if ($comment) {
-            $entityManagerInterface->remove($comment);
-            $entityManagerInterface->flush();
+            $entityManager->remove($comment);
+            $entityManager->flush();
 
             $this->addFlash(
                 'message',
@@ -37,5 +37,7 @@ class CommentController extends AbstractController
                 return $this->redirectToRoute('app_admin_comments');
             }
         }
+
+
     }
 }

@@ -31,29 +31,56 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Figure $figure = null;
-
+    
+    /**
+     * getId
+     *
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * getMessage
+     *
+     * @return string
+     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
-
+    
+    /**
+     * setMessage
+     *
+     * @param  string $message Message
+     * @return self
+     */
     public function setMessage(string $message): self
     {
         $this->message = $message;
 
         return $this;
     }
-
+    
+    /**
+     * getFigure
+     *
+     * @return Figure
+     */
     public function getFigure(): ?Figure
     {
         return $this->figure;
     }
-
+    
+    /**
+     * setFigure
+     *
+     * @param  Figure $figure Figure
+     * @return self
+     */
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;

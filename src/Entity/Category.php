@@ -34,34 +34,66 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Figure::class, orphanRemoval: true)]
     private Collection $figures;
 
+    /**
+     * Constructor
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->figures = new ArrayCollection();
     }
-
+    
+    /**
+     * getId
+     *
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * getName
+     *
+     * @return string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-
+    
+    /**
+     * setName
+     *
+     * @param  string $name Name
+     * @return self
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
-
+    
+    /**
+     * getParent
+     *
+     * @return self
+     */
     public function getParent(): ?self
     {
         return $this->parent;
     }
-
+    
+    /**
+     * setParent
+     *
+     * @param  mixed $parent
+     * @return self
+     */
     public function setParent(?self $parent): self
     {
         $this->parent = $parent;
@@ -76,7 +108,13 @@ class Category
     {
         return $this->categories;
     }
-
+    
+    /**
+     * addCategory
+     *
+     * @param  mixed $category Category
+     * @return self
+     */
     public function addCategory(self $category): self
     {
         if (!$this->categories->contains($category)) {
@@ -86,11 +124,17 @@ class Category
 
         return $this;
     }
-
+    
+    /**
+     * removeCategory
+     *
+     * @param  mixed $category Category
+     * @return self
+     */
     public function removeCategory(self $category): self
     {
         if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
+            // Set the owning side to null (unless already changed)
             if ($category->getParent() === $this) {
                 $category->setParent(null);
             }
@@ -98,24 +142,46 @@ class Category
 
         return $this;
     }
-
+    
+    /**
+     * getSlug
+     *
+     * @return string
+     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
-
+    
+    /**
+     * setSlug
+     *
+     * @param  string $slug Slug
+     * @return self
+     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
         return $this;
     }
-
+    
+    /**
+     * getDescription
+     *
+     * @return string
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
-
+    
+    /**
+     * setDescription
+     *
+     * @param  string $description Description
+     * @return self
+     */
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -130,7 +196,13 @@ class Category
     {
         return $this->figures;
     }
-
+    
+    /**
+     * addFigure
+     *
+     * @param  Figure $figure Figure
+     * @return self
+     */
     public function addFigure(Figure $figure): self
     {
         if (!$this->figures->contains($figure)) {
@@ -140,7 +212,13 @@ class Category
 
         return $this;
     }
-
+    
+    /**
+     * removeFigure
+     *
+     * @param  Figure $figure Figure
+     * @return self
+     */
     public function removeFigure(Figure $figure): self
     {
         if ($this->figures->removeElement($figure)) {

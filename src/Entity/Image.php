@@ -28,33 +28,65 @@ class Image
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    /**
+     * Constructor
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->updatedAt = new \DateTimeImmutable();
     }
-
+    
+    /**
+     * getId
+     *
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * getName
+     *
+     * @return string
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-
+    
+    /**
+     * setName
+     *
+     * @param  string $name Name
+     * @return self
+     */
     public function setName(?string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
-
+    
+    /**
+     * getImageFile
+     *
+     * @return void
+     */
     public function getImageFile()
     {
         return $this->imageFile;
     }
-
+    
+    /**
+     * setImageFile
+     *
+     * @param  File $name ImageFile
+     * @return void
+     */
     public function setImageFile(File $name = null)
     {
         $this->imageFile = $name;
@@ -67,24 +99,46 @@ class Image
             $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
-
+    
+    /**
+     * getFigure
+     *
+     * @return Figure
+     */
     public function getFigure(): ?Figure
     {
         return $this->figure;
     }
-
+    
+    /**
+     * setFigure
+     *
+     * @param  Figure $figure Figure
+     * @return self
+     */
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
 
         return $this;
     }
-
+    
+    /**
+     * getUpdatedAt
+     *
+     * @return DateTimeImmutable
+     */
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
-
+    
+    /**
+     * setUpdatedAt
+     *
+     * @param  DateTimeImmutable $updatedAt UpdatedAt
+     * @return self
+     */
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;

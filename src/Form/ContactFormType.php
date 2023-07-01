@@ -16,27 +16,41 @@ class ContactFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fullName', TextType::class, ['required' => false])
-            ->add('email', EmailType::class, [
-                'required' => false
-            ])
-            ->add('subject', ChoiceType::class, [
-                'label' => 'Objet',
-                'choices' => [
-                    'Information' => 'information',
-                    'Question' => 'question'
-                ],
-                'required' => false
-            ])
-            ->add('message', TextareaType::class, [
-                'required' => false
-            ]);
+            ->add(
+                'fullName', TextType::class,
+                [
+                    'required' => false
+                ]
+            )
+            ->add(
+                'email', EmailType::class,
+                [
+                    'required' => false
+                ]
+            )
+            ->add(
+                'subject', ChoiceType::class,
+                [
+                    'label'   => 'Objet',
+                    'choices' => [
+                        'Information' => 'information',
+                        'Question' => 'question'
+                    ],
+                    'required' => false
+                ]
+            )
+            ->add(
+                'message', TextareaType::class,
+                [
+            
+                    'required' => false
+                ]
+            )
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => Contact::class,
-        ]);
+        $resolver->setDefaults(['data_class' => Contact::class]);
     }
 }

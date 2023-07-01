@@ -30,7 +30,7 @@ class FigureController extends AbstractController
     /**
      * Create a Figure
      *
-     * @param  Request                $request Request
+     * @param  Request                $request       Request
      * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
@@ -44,7 +44,6 @@ class FigureController extends AbstractController
         $form->handleRequest($request);
 
         $figure->setCreatedBy($this->getUser());
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $images = $form->getData()->getImages();
@@ -80,14 +79,14 @@ class FigureController extends AbstractController
     /**
      * Show a figure
      *
-     * @param  Figure                 $figure Figure
-     * @param  Request                $request Request
-     * @param  EntityManagerInterface $entityManager EntityManager
+     * @param  Figure                 $figure              Figure
+     * @param  Request                $request             Request
+     * @param  EntityManagerInterface $entityManager       EntityManager
      * @param  PaginatorInterface     $paginationInterface PaginatorInterface
      * @return Response
      */
     #[Route('/figure/{slug}', name: 'figure_show')]
-    public function figure(?Figure $figure, Request $request, EntityManagerInterface $entityManagerInterface, PaginatorInterface $paginationInterface): Response
+    public function figure(?Figure $figure, Request $request, EntityManagerInterface $entityManager, PaginatorInterface $paginationInterface): Response
     {
         if (!$figure) {
             return $this->redirectToRoute('home');
@@ -105,8 +104,8 @@ class FigureController extends AbstractController
 
             $comment = $form->getData();
 
-            $entityManagerInterface->persist($comment);
-            $entityManagerInterface->flush();
+            $entityManager->persist($comment);
+            $entityManager->flush();
 
             return $this->redirectToRoute('figure_show', ['slug' => $figure->getSlug()]);
         }
@@ -127,8 +126,8 @@ class FigureController extends AbstractController
     /**
      * Edit a figure
      *
-     * @param  Figure                 $figure Figure
-     * @param  Request                $request Request
+     * @param  Figure                 $figure        Figure
+     * @param  Request                $request       Request
      * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */

@@ -14,8 +14,8 @@ class HomeController extends AbstractController
     /**
      * Display all figures
      *
-     * @param  FigureRepository $figureRepository FigureRepository
-     * @param  Request $request Request
+     * @param  FigureRepository   $figureRepository    FigureRepository
+     * @param  Request            $request             Request
      * @param  PaginatorInterface $paginationInterface PaginatorInterface
      * @return Response
      */
@@ -29,5 +29,6 @@ class HomeController extends AbstractController
             9
         );
         return $this->render('home/index.html.twig', ['figures' => $figures]);
+
     }
 }

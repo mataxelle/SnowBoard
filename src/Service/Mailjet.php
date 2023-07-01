@@ -5,11 +5,37 @@ namespace App\Service;
 use \Mailjet\Resources;
 
 class Mailjet
-{
+{    
+    /**
+     * mailjetKey
+     *
+     * @var string
+     */
     private $mailjetKey;
+    
+    /**
+     * mailjetSecretKey
+     *
+     * @var string
+     */
     private $mailjetSecretKey;
+    
+    /**
+     * emailAdmin
+     *
+     * @var string
+     */
     private $emailAdmin;
 
+    
+    /**
+     * __construct
+     *
+     * @param $mailjetKey       mailjetKey
+     * @param $mailjetSecretKey mailjetSecretKey
+     * @param $emailAdmin       emailAdmin
+     * @return void
+     */
     public function __construct(
         $mailjetKey,
         $mailjetSecretKey,
@@ -19,7 +45,17 @@ class Mailjet
         $this->mailjetSecretKey = $mailjetSecretKey;
         $this->emailAdmin = $emailAdmin;
     }
-
+    
+    /**
+     * sendEmail
+     *
+     * @param  string $emailTo    EmailTo
+     * @param  string $name       Name
+     * @param  string $subject    Subject
+     * @param  string $content    Content
+     * @param  int    $templateId TemplateId
+     * @return void
+     */
     public function sendEmail($emailTo, $name, $subject, $content, $templateId)
     {
 
@@ -47,10 +83,20 @@ class Mailjet
             ]
         ];
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-        //dump($response, $response->getData());die;
+        // Dump($response, $response->getData());die;
         $response->success() && var_dump($response->getData());
     }
-
+    
+    /**
+     * getEmailMessage
+     *
+     * @param  string $emailTo    EmailTo
+     * @param  string $name       Name
+     * @param  string $subject    Subject
+     * @param  string $content    Content
+     * @param  int    $templateId TemplateId
+     * @return void
+     */
     public function getEmailMessage($from, $name, $subject, $content, $templateId)
     {
 
@@ -79,7 +125,7 @@ class Mailjet
             ]
         ];
         $response = $mj->post(Resources::$Email, ['body' => $body]);
-        //dump($response, $response->getData());die;
+        // Dump($response, $response->getData());die;
         $response->success() && var_dump($response->getData());
     }
 }

@@ -70,22 +70,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    /**
+     * Constructor
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->figures = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-
+    
+    /**
+     * getId
+     *
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * getEmail
+     *
+     * @return string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
+    
+    /**
+     * setEmail
+     *
+     * @param  string $email Email
+     * @return self
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -114,7 +135,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
     }
-
+    
+    /**
+     * setRoles
+     *
+     * @param  array $roles Roles
+     * @return self
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -145,48 +172,92 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
+    
+    /**
+     * getFirstname
+     *
+     * @return string
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
-
+    
+    /**
+     * setFirstname
+     *
+     * @param  string $firstname Firstname
+     * @return self
+     */
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
 
         return $this;
     }
-
+    
+    /**
+     * getLastname
+     *
+     * @return string
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
-
+    
+    /**
+     * setLastname
+     *
+     * @param  string $lastname Lastname
+     * @return self
+     */
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
 
         return $this;
     }
-
+    
+    /**
+     * getImageProfile
+     *
+     * @return string
+     */
     public function getImageProfile(): ?string
     {
         return $this->imageProfile;
     }
-
+    
+    /**
+     * setImageProfile
+     *
+     * @param  string $imageProfile ImageProfile
+     * @return self
+     */
     public function setImageProfile(?string $imageProfile): self
     {
         $this->imageProfile = $imageProfile;
 
         return $this;
     }
-
+    
+    /**
+     * getImageProfileFile
+     *
+     * @return void
+     */
     public function getImageProfileFile()
     {
         return $this->imageProfileFile;
     }
-
+    
+    /**
+     * setImageProfileFile
+     *
+     * @param  File $imageProfile ImageProfileFile
+     * @return void
+     */
     public function setImageProfileFile(?File $imageProfile = null)
     {
         $this->imageProfileFile = $imageProfile;
@@ -207,7 +278,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->figures;
     }
-
+    
+    /**
+     * addFigure
+     *
+     * @param  Figure $figure Figure
+     * @return self
+     */
     public function addFigure(Figure $figure): self
     {
         if (!$this->figures->contains($figure)) {
@@ -217,7 +294,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+    
+    /**
+     * removeFigure
+     *
+     * @param  Figure $figure Figure
+     * @return self
+     */
     public function removeFigure(Figure $figure): self
     {
         if ($this->figures->removeElement($figure)) {
@@ -237,7 +320,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->comments;
     }
-
+    
+    /**
+     * addComment
+     *
+     * @param  Comment $comment Comment
+     * @return self
+     */
     public function addComment(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -247,7 +336,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+    
+    /**
+     * removeComment
+     *
+     * @param  Comment $comment Comment
+     * @return self
+     */
     public function removeComment(Comment $comment): self
     {
         if ($this->comments->removeElement($comment)) {

@@ -50,81 +50,157 @@ class Contact
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $answeredAt = null;
 
+    /**
+     * Constructor
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->answeredAt = new \DateTimeImmutable();
     }
-
+    
+    /**
+     * getId
+     *
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    /**
+     * getFullName
+     *
+     * @return string
+     */
     public function getFullName(): ?string
     {
         return $this->fullName;
     }
-
+    
+    /**
+     * setFullName
+     *
+     * @param  string $fullName Fullname
+     * @return self
+     */
     public function setFullName(?string $fullName): self
     {
         $this->fullName = $fullName;
 
         return $this;
     }
-
+    
+    /**
+     * getEmail
+     *
+     * @return string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
+    
+    /**
+     * setEmail
+     *
+     * @param  string $email Email
+     * @return self
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
-
+    
+    /**
+     * getSubject
+     *
+     * @return string
+     */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
-
+    
+    /**
+     * setSubject
+     *
+     * @param  string $subject Subject
+     * @return self
+     */
     public function setSubject(string $subject): self
     {
         $this->subject = $subject;
 
         return $this;
     }
-
+    
+    /**
+     * getMessage
+     *
+     * @return string
+     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
-
+    
+    /**
+     * setMessage
+     *
+     * @param  string $message Message
+     * @return self
+     */
     public function setMessage(string $message): self
     {
         $this->message = $message;
 
         return $this;
     }
-
+    
+    /**
+     * isIsAnswered
+     *
+     * @return bool
+     */
     public function isIsAnswered(): ?bool
     {
         return $this->isAnswered;
     }
-
+    
+    /**
+     * setIsAnswered
+     *
+     * @param  bool $isAnswered IsAnswered
+     * @return self
+     */
     public function setIsAnswered(bool $isAnswered): self
     {
         $this->isAnswered = $isAnswered;
 
         return $this;
     }
-
+    
+    /**
+     * getAnsweredAt
+     *
+     * @return DateTimeImmutable
+     */
     public function getAnsweredAt(): ?\DateTimeImmutable
     {
         return $this->answeredAt;
     }
-
+    
+    /**
+     * setAnsweredAt
+     *
+     * @param  DateTimeImmutable $answeredAt AnsweredAt
+     * @return self
+     */
     public function setAnsweredAt(?\DateTimeImmutable $answeredAt): self
     {
         $this->answeredAt = $answeredAt;

@@ -38,7 +38,12 @@ class FigureRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
+    /**
+     * getFiguresCount
+     *
+     * @return int
+     */
     public function getFiguresCount(): int
     {
         $result = $this->createQueryBuilder('f')
@@ -48,7 +53,12 @@ class FigureRepository extends ServiceEntityRepository
 
         return $result;
     }
-
+    
+    /**
+     * getFiguresByDate
+     *
+     * @return array
+     */
     public function getFiguresByDate(): array
     {
         return $this->createQueryBuilder('f')

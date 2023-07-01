@@ -17,13 +17,13 @@ class ContactController extends AbstractController
     /**
      * Create a message
      *
-     * @param  Request                $request Request
-     * @param  EntityManagerInterface $entityManagerInterface EntityManagerInterface
-     * @param  Mailjet                $mailjet Mailjet
+     * @param  Request                $request       Request
+     * @param  EntityManagerInterface $entityManager EntityManager
+     * @param  Mailjet                $mailjet       Mailjet
      * @return Response
      */
     #[Route('', name: 'add')]
-    public function add(Request $request, EntityManagerInterface $entityManagerInterface, Mailjet $mailjet): Response
+    public function add(Request $request, EntityManagerInterface $entityManager, Mailjet $mailjet): Response
     {
         $contact = new Contact();
 
@@ -43,8 +43,8 @@ class ContactController extends AbstractController
             $contact->setIsAnswered(0);
             $contact = $form->getData();
 
-            $entityManagerInterface->persist($contact);
-            $entityManagerInterface->flush();
+            $entityManager->persist($contact);
+            $entityManager->flush();
 
             $mailjet->getEmailMessage(
                 $contact->getEmail(),
@@ -90,16 +90,16 @@ class ContactController extends AbstractController
     /**
      * Delete a message
      *
-     * @param  Contact                $contact Contact
-     * @param  EntityManagerInterface $entityManagerInterface EntityManagerInterface
+     * @param  Contact                $contact       Contact
+     * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
     #[Route('/{id}/delete', name: 'delete')]
-    public function delete(?Contact $contact, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(?Contact $contact, EntityManagerInterface $entityManager): Response
     {
         if ($contact) {
-            $entityManagerInterface->remove($contact);
-            $entityManagerInterface->flush();
+            $entityManager->remove($contact);
+            $entityManager->flush();
 
             $this->addFlash(
                 'message',

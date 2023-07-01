@@ -38,7 +38,12 @@ class CommentRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    
+    /**
+     * getCommentsCount
+     *
+     * @return int
+     */
     public function getCommentsCount(): int
     {
         $result = $this->createQueryBuilder('c')
@@ -48,7 +53,12 @@ class CommentRepository extends ServiceEntityRepository
 
         return $result;
     }
-
+    
+    /**
+     * getCommentsByDate
+     *
+     * @return array
+     */
     public function getCommentsByDate(): array
     {
         return $this->createQueryBuilder('c')

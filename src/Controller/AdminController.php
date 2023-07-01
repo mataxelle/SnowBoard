@@ -49,7 +49,7 @@ class AdminController extends AbstractController
     /**
      * Display all users
      *
-     * @param  UserRepository     $userRepository UserRepository
+     * @param  UserRepository     $userRepository     UserRepository
      * @param  PaginatorInterface $paginatorInterface PaginatorInterface
      * @param  Request            $request Request
      * @return Response
@@ -78,17 +78,15 @@ class AdminController extends AbstractController
     #[Route('/user/{id}', name: 'user_profile')]
     public function profile(?User $user): Response
     {
-        //$user = $userRepository->findBy();
+        // $user = $userRepository->findBy();
 
-        return $this->render('user/user_profile.html.twig', [
-            'user' => $user,
-        ]);
+        return $this->render('user/user_profile.html.twig', ['user' => $user]);
     }
 
     /**
      * Display all figures
      *
-     * @param  FigureRepository   $figureRepository FigureRepository
+     * @param  FigureRepository   $figureRepository   FigureRepository
      * @param  PaginatorInterface $paginatorInterface PaginatorInterface
      * @param  Request            $request Request
      * @return Response
@@ -116,7 +114,7 @@ class AdminController extends AbstractController
     /**
      * Display all comments
      *
-     * @param  CommentRepository  $commentRepository CommentRepository
+     * @param  CommentRepository  $commentRepository  CommentRepository
      * @param  PaginatorInterface $paginatorInterface PaginatorInterface
      * @param  Request            $request Request
      * @return Response
@@ -144,7 +142,7 @@ class AdminController extends AbstractController
     /**
      * Display all contacts
      *
-     * @param  ContactRepository  $contactRepository ContactRepository
+     * @param  ContactRepository  $contactRepository  ContactRepository
      * @param  PaginatorInterface $paginatorInterface PaginatorInterface
      * @param  Request            $request Request
      * @return Response

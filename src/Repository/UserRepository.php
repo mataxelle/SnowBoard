@@ -55,7 +55,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->save($user, true);
     }
-
+    
+    /**
+     * getUsersCount
+     *
+     * @return int
+     */
     public function getUsersCount(): int
     {
         $result = $this->createQueryBuilder('u')
@@ -65,7 +70,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         return $result;
     }
-
+    
+    /**
+     * getUsersByDate
+     *
+     * @return array
+     */
     public function getUsersByDate(): array
     {
         return $this->createQueryBuilder('u')

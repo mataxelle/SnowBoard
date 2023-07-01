@@ -17,35 +17,49 @@ class FigureFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'required' => false
-            ])
-            ->add('description', TextareaType::class, [
-                'required' => false
-            ])
-            ->add('category', EntityType::class, [
-                'class' => Category::class
-            ])
-            ->add('images', CollectionType::class, [
-                'entry_type' => ImageFormType::class,
-                'required' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true
-            ])
-            ->add('videos', CollectionType::class, [
-                'entry_type' => VideoFormType::class,
-                'required' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true
-            ]);
+            ->add(
+                'name', TextType::class,
+                [
+                    'required' => false
+                ]
+            )
+            ->add(
+                'description', TextareaType::class,
+                [
+                    'required' => false
+                ]
+            )
+            ->add(
+                'category', EntityType::class,
+                [
+                    'class' => Category::class
+                ]
+            )
+            ->add(
+                'images', CollectionType::class,
+                [
+                    'entry_type' => ImageFormType::class,
+                    'required' => false,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'prototype' => true
+                ]
+            )
+            ->add(
+                'videos', CollectionType::class,
+                [
+                    'entry_type' => VideoFormType::class,
+                    'required' => false,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'prototype' => true
+                ]
+            )
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => Figure::class,
-        ]);
+        $resolver->setDefaults(['data_class' => Figure::class]);
     }
 }

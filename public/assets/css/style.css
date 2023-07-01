@@ -1,18 +1,21 @@
 .lightbox-gallery {
-  /*background-image: linear-gradient(#4a148c, #e53935);
+  /* background-image: linear-gradient(#4a148c, #e53935);
   background-repeat: no-repeat;
-  color: #000;*/
+  color: #000; */
   overflow-x: hidden;
 }
+
 .lightbox-gallery p {
   color: #fff;
 }
+
 .lightbox-gallery h2 {
   font-weight: bold;
   margin-bottom: 40px;
   padding-top: 40px;
   color: #fff;
 }
+
 @media (max-width: 767px) {
   .lightbox-gallery h2 {
     margin-bottom: 25px;
@@ -20,17 +23,21 @@
     font-size: 24px;
   }
 }
+
 .lightbox-gallery .intro {
   font-size: 16px;
   max-width: 500px;
   margin: 0 auto 40px;
 }
+
 .lightbox-gallery .intro p {
   margin-bottom: 0;
 }
+
 .lightbox-gallery .photos {
   padding-bottom: 20px;
 }
+
 .lightbox-gallery .item {
   padding-bottom: 30px;
 }
@@ -63,10 +70,10 @@ div .comments:nth-child(even) {
 }
 
 .ancre {
-  /*height: 50px;
+  /* height: 50px;
   width: 50px;
   background: crimson;
-  border-radius: 50%;*/
+  border-radius: 50%; */
   display: flex;
   justify-content: center;
   align-items: center;

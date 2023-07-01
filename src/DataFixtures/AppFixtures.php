@@ -14,9 +14,20 @@ use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
-{
+{    
+    /**
+     * passwordHasher
+     *
+     * @var mixed
+     */
     private $passwordHasher;
-
+  
+    /**
+     * __construct
+     *
+     * @param  UserPasswordHasherInterface $passwordHasher passwordHasher
+     * @return void
+     */
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;

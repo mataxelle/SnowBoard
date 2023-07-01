@@ -21,7 +21,7 @@ trait BlameableEntity
     /**
      * Sets createdBy.
      *
-     * @param string $createdBy
+     * @param User $createdBy CreatedBy
      *
      * @return $this
      */
@@ -45,7 +45,7 @@ trait BlameableEntity
     /**
      * Sets updatedBy.
      *
-     * @param string $updatedBy
+     * @param User $updatedBy UpdatedBy
      *
      * @return $this
      */
