@@ -34,7 +34,11 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false">
+              {% if app.user %}
               {{ app.user.firstname }}
+              {% else %}
+                Compte
+              {% endif %}
             </a>
             <ul class="dropdown-menu">
               {% if app.user %}
