@@ -90,3 +90,14 @@ div .comments:nth-child(even) {
 html {
   scroll-behavior: smooth;
 }
+
+.pagination span {
+  margin: 0 15px;
+}
+
+.pagination span a {
+  color: #1a1919;
+  text-decoration: none;
+  border: #3c2fca 1px solid;
+  border-radius: 5px;
+}

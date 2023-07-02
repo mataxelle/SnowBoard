@@ -43,6 +43,7 @@ class Mailjet
         $this->mailjetKey = $mailjetKey;
         $this->mailjetSecretKey = $mailjetSecretKey;
         $this->emailAdmin = $emailAdmin;
+
     }
 
     /**
