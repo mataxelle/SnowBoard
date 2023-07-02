@@ -31,7 +31,7 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Figure $figure = null;
-    
+
     /**
      * getId
      *
@@ -41,7 +41,7 @@ class Comment
     {
         return $this->id;
     }
-    
+
     /**
      * getMessage
      *
@@ -51,7 +51,7 @@ class Comment
     {
         return $this->message;
     }
-    
+
     /**
      * setMessage
      *
@@ -64,7 +64,7 @@ class Comment
 
         return $this;
     }
-    
+
     /**
      * getFigure
      *
@@ -74,7 +74,7 @@ class Comment
     {
         return $this->figure;
     }
-    
+
     /**
      * setFigure
      *

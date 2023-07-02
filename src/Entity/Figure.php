@@ -67,7 +67,7 @@ class Figure
         $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-    
+
     /**
      * getId
      *
@@ -77,7 +77,7 @@ class Figure
     {
         return $this->id;
     }
-    
+
     /**
      * getName
      *
@@ -87,7 +87,7 @@ class Figure
     {
         return $this->name;
     }
-    
+
     /**
      * setName
      *
@@ -100,7 +100,7 @@ class Figure
 
         return $this;
     }
-    
+
     /**
      * getSlug
      *
@@ -110,7 +110,7 @@ class Figure
     {
         return $this->slug;
     }
-    
+
     /**
      * setSlug
      *
@@ -123,7 +123,7 @@ class Figure
 
         return $this;
     }
-    
+
     /**
      * getCategory
      *
@@ -133,7 +133,7 @@ class Figure
     {
         return $this->category;
     }
-    
+
     /**
      * setCategory
      *
@@ -146,7 +146,7 @@ class Figure
 
         return $this;
     }
-    
+
     /**
      * getDescription
      *
@@ -156,7 +156,7 @@ class Figure
     {
         return $this->description;
     }
-    
+
     /**
      * setDescription
      *
@@ -177,7 +177,7 @@ class Figure
     {
         return $this->images;
     }
-    
+
     /**
      * addImage
      *
@@ -193,7 +193,7 @@ class Figure
 
         return $this;
     }
-    
+
     /**
      * removeImage
      *
@@ -219,7 +219,7 @@ class Figure
     {
         return $this->videos;
     }
-    
+
     /**
      * addVideo
      *
@@ -235,7 +235,7 @@ class Figure
 
         return $this;
     }
-    
+
     /**
      * removeVideo
      *
@@ -261,7 +261,7 @@ class Figure
     {
         return $this->comments;
     }
-    
+
     /**
      * addComment
      *
@@ -277,7 +277,7 @@ class Figure
 
         return $this;
     }
-    
+
     /**
      * removeComment
      *

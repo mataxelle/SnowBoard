@@ -38,7 +38,7 @@ class CommentRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     /**
      * getCommentsCount
      *
@@ -53,7 +53,7 @@ class CommentRepository extends ServiceEntityRepository
 
         return $result;
     }
-    
+
     /**
      * getCommentsByDate
      *

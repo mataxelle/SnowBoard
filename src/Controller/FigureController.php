@@ -25,6 +25,7 @@ class FigureController extends AbstractController
     public function index(): Response
     {
         return $this->render('figure/index.html.twig', ['controller_name' => 'FigureController']);
+
     }
 
     /**
@@ -176,17 +177,17 @@ class FigureController extends AbstractController
     /**
      * Delete a figure
      *
-     * @param  Figure                 $figure Figure
+     * @param  Figure                 $figure        Figure
      * @param  EntityManagerInterface $entityManager EntityManager
      * @return Response
      */
     #[Security("is_granted('ROLE_USER') and user === figure.getCreatedBy() || is_granted('ROLE_ADMIN')")]
     #[Route('/figure/{id}/delete', name: 'figure_delete')]
-    public function delete(?Figure $figure, EntityManagerInterface $entityManagerInterface): Response
+    public function delete(?Figure $figure, EntityManagerInterface $entityManager): Response
     {
         if ($figure) {
-            $entityManagerInterface->remove($figure);
-            $entityManagerInterface->flush();
+            $entityManager->remove($figure);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_admin_figures');
         }

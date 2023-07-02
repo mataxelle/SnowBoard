@@ -44,7 +44,7 @@ class Category
         $this->categories = new ArrayCollection();
         $this->figures = new ArrayCollection();
     }
-    
+
     /**
      * getId
      *
@@ -54,7 +54,7 @@ class Category
     {
         return $this->id;
     }
-    
+
     /**
      * getName
      *
@@ -64,7 +64,7 @@ class Category
     {
         return $this->name;
     }
-    
+
     /**
      * setName
      *
@@ -77,7 +77,7 @@ class Category
 
         return $this;
     }
-    
+
     /**
      * getParent
      *
@@ -87,7 +87,7 @@ class Category
     {
         return $this->parent;
     }
-    
+
     /**
      * setParent
      *
@@ -108,7 +108,7 @@ class Category
     {
         return $this->categories;
     }
-    
+
     /**
      * addCategory
      *
@@ -124,7 +124,7 @@ class Category
 
         return $this;
     }
-    
+
     /**
      * removeCategory
      *
@@ -142,7 +142,7 @@ class Category
 
         return $this;
     }
-    
+
     /**
      * getSlug
      *
@@ -152,7 +152,7 @@ class Category
     {
         return $this->slug;
     }
-    
+
     /**
      * setSlug
      *
@@ -165,7 +165,7 @@ class Category
 
         return $this;
     }
-    
+
     /**
      * getDescription
      *
@@ -175,7 +175,7 @@ class Category
     {
         return $this->description;
     }
-    
+
     /**
      * setDescription
      *
@@ -196,7 +196,7 @@ class Category
     {
         return $this->figures;
     }
-    
+
     /**
      * addFigure
      *
@@ -212,7 +212,7 @@ class Category
 
         return $this;
     }
-    
+
     /**
      * removeFigure
      *

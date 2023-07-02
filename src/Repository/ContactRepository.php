@@ -38,7 +38,7 @@ class ContactRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     /**
      * getContactsCount
      *
@@ -53,7 +53,7 @@ class ContactRepository extends ServiceEntityRepository
 
         return $result;
     }
-    
+
     /**
      * getContactsByDate
      *

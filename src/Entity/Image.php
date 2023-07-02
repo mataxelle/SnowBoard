@@ -37,7 +37,7 @@ class Image
     {
         $this->updatedAt = new \DateTimeImmutable();
     }
-    
+
     /**
      * getId
      *
@@ -47,7 +47,7 @@ class Image
     {
         return $this->id;
     }
-    
+
     /**
      * getName
      *
@@ -57,7 +57,7 @@ class Image
     {
         return $this->name;
     }
-    
+
     /**
      * setName
      *
@@ -70,7 +70,7 @@ class Image
 
         return $this;
     }
-    
+
     /**
      * getImageFile
      *
@@ -80,7 +80,7 @@ class Image
     {
         return $this->imageFile;
     }
-    
+
     /**
      * setImageFile
      *
@@ -99,7 +99,7 @@ class Image
             $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
-    
+
     /**
      * getFigure
      *
@@ -109,7 +109,7 @@ class Image
     {
         return $this->figure;
     }
-    
+
     /**
      * setFigure
      *
@@ -122,7 +122,7 @@ class Image
 
         return $this;
     }
-    
+
     /**
      * getUpdatedAt
      *
@@ -132,7 +132,7 @@ class Image
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * setUpdatedAt
      *

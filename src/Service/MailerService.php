@@ -6,7 +6,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 class MailerService
-{    
+{
     /**
      * mailer
      *
@@ -23,11 +23,16 @@ class MailerService
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
-    }
 
+    }
+    
+    /**
+     * sendEmail
+     *
+     * @return void
+     */
     public function sendEmail(): void
     {
-
         $email = (new Email())
             ->from('')
             ->to('')

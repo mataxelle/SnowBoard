@@ -38,7 +38,7 @@ class FigureRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
+
     /**
      * getFiguresCount
      *
@@ -53,7 +53,7 @@ class FigureRepository extends ServiceEntityRepository
 
         return $result;
     }
-    
+
     /**
      * getFiguresByDate
      *

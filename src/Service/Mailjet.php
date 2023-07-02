@@ -5,21 +5,21 @@ namespace App\Service;
 use \Mailjet\Resources;
 
 class Mailjet
-{    
+{
     /**
      * mailjetKey
      *
      * @var string
      */
     private $mailjetKey;
-    
+
     /**
      * mailjetSecretKey
      *
      * @var string
      */
     private $mailjetSecretKey;
-    
+
     /**
      * emailAdmin
      *
@@ -27,7 +27,6 @@ class Mailjet
      */
     private $emailAdmin;
 
-    
     /**
      * __construct
      *
@@ -45,7 +44,7 @@ class Mailjet
         $this->mailjetSecretKey = $mailjetSecretKey;
         $this->emailAdmin = $emailAdmin;
     }
-    
+
     /**
      * sendEmail
      *
@@ -58,8 +57,7 @@ class Mailjet
      */
     public function sendEmail($emailTo, $name, $subject, $content, $templateId)
     {
-
-        $mj = new \Mailjet\Client($this->mailjetKey, $this->mailjetSecretKey, true, ['version' => 'v3.1']);
+        $mjet = new \Mailjet\Client($this->mailjetKey, $this->mailjetSecretKey, true, ['version' => 'v3.1']);
         $body = [
             'Messages' => [
                 [
@@ -82,15 +80,14 @@ class Mailjet
                 ]
             ]
         ];
-        $response = $mj->post(Resources::$Email, ['body' => $body]);
-        // Dump($response, $response->getData());die;
+        $response = $mjet->post(Resources::$Email, ['body' => $body]);
         $response->success() && var_dump($response->getData());
     }
-    
+
     /**
      * getEmailMessage
      *
-     * @param  string $emailTo    EmailTo
+     * @param  string $from       from
      * @param  string $name       Name
      * @param  string $subject    Subject
      * @param  string $content    Content
@@ -99,8 +96,7 @@ class Mailjet
      */
     public function getEmailMessage($from, $name, $subject, $content, $templateId)
     {
-
-        $mj = new \Mailjet\Client($this->mailjetKey, $this->mailjetSecretKey, true, ['version' => 'v3.1']);
+        $mjet = new \Mailjet\Client($this->mailjetKey, $this->mailjetSecretKey, true, ['version' => 'v3.1']);
         $body = [
             'Messages' => [
                 [
@@ -124,8 +120,7 @@ class Mailjet
                 ]
             ]
         ];
-        $response = $mj->post(Resources::$Email, ['body' => $body]);
-        // Dump($response, $response->getData());die;
+        $response = $mjet->post(Resources::$Email, ['body' => $body]);
         $response->success() && var_dump($response->getData());
     }
 }

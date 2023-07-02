@@ -19,8 +19,7 @@ class ImageFormType extends AbstractType
                     'required'     => false,
                     'download_uri' => false
                 ]
-            )
-        ;
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

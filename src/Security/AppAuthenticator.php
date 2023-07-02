@@ -20,11 +20,24 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
-
+    
+    /**
+     * __construct
+     *
+     * @param  UrlGeneratorInterface $urlGenerator UrlGenerator
+     * @return void
+     */
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
-    }
 
+    }
+    
+    /**
+     * authenticate
+     *
+     * @param  Request $request Request
+     * @return Passport
+     */
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
@@ -35,11 +48,19 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
             [
-                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+             new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
         );
     }
-
+    
+    /**
+     * onAuthenticationSuccess
+     *
+     * @param  Request        $request      Request
+     * @param  TokenInterface $token        TokenInterface
+     * @param  string         $firewallName firewallName
+     * @return Response
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
@@ -50,7 +71,13 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         return new RedirectResponse($this->urlGenerator->generate('home'));
         // Throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
-
+    
+    /**
+     * getLoginUrl
+     *
+     * @param  Request $request Request
+     * @return string
+     */
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

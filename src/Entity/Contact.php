@@ -59,7 +59,7 @@ class Contact
     {
         $this->answeredAt = new \DateTimeImmutable();
     }
-    
+
     /**
      * getId
      *
@@ -69,7 +69,7 @@ class Contact
     {
         return $this->id;
     }
-    
+
     /**
      * getFullName
      *
@@ -79,7 +79,7 @@ class Contact
     {
         return $this->fullName;
     }
-    
+
     /**
      * setFullName
      *
@@ -92,7 +92,7 @@ class Contact
 
         return $this;
     }
-    
+
     /**
      * getEmail
      *
@@ -102,7 +102,7 @@ class Contact
     {
         return $this->email;
     }
-    
+
     /**
      * setEmail
      *
@@ -115,7 +115,7 @@ class Contact
 
         return $this;
     }
-    
+
     /**
      * getSubject
      *
@@ -125,7 +125,7 @@ class Contact
     {
         return $this->subject;
     }
-    
+
     /**
      * setSubject
      *
@@ -138,7 +138,7 @@ class Contact
 
         return $this;
     }
-    
+
     /**
      * getMessage
      *
@@ -148,7 +148,7 @@ class Contact
     {
         return $this->message;
     }
-    
+
     /**
      * setMessage
      *
@@ -161,7 +161,7 @@ class Contact
 
         return $this;
     }
-    
+
     /**
      * isIsAnswered
      *
@@ -171,7 +171,7 @@ class Contact
     {
         return $this->isAnswered;
     }
-    
+
     /**
      * setIsAnswered
      *
@@ -184,7 +184,7 @@ class Contact
 
         return $this;
     }
-    
+
     /**
      * getAnsweredAt
      *
@@ -194,7 +194,7 @@ class Contact
     {
         return $this->answeredAt;
     }
-    
+
     /**
      * setAnsweredAt
      *

@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->figures = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-    
+
     /**
      * getId
      *
@@ -90,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->id;
     }
-    
+
     /**
      * getEmail
      *
@@ -100,7 +100,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->email;
     }
-    
+
     /**
      * setEmail
      *
@@ -135,7 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return array_unique($roles);
     }
-    
+
     /**
      * setRoles
      *
@@ -172,7 +172,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-    
+
     /**
      * getFirstname
      *
@@ -182,7 +182,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->firstname;
     }
-    
+
     /**
      * setFirstname
      *
@@ -195,7 +195,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
     /**
      * getLastname
      *
@@ -205,7 +205,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->lastname;
     }
-    
+
     /**
      * setLastname
      *
@@ -218,7 +218,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
     /**
      * getImageProfile
      *
@@ -228,7 +228,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->imageProfile;
     }
-    
+
     /**
      * setImageProfile
      *
@@ -241,7 +241,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
     /**
      * getImageProfileFile
      *
@@ -251,7 +251,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->imageProfileFile;
     }
-    
+
     /**
      * setImageProfileFile
      *
@@ -278,7 +278,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->figures;
     }
-    
+
     /**
      * addFigure
      *
@@ -294,7 +294,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
     /**
      * removeFigure
      *
@@ -320,7 +320,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->comments;
     }
-    
+
     /**
      * addComment
      *
@@ -336,7 +336,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
     /**
      * removeComment
      *

@@ -43,7 +43,7 @@ class Video
     {
         $this->updatedAt = new \DateTimeImmutable();
     }
-    
+
     /**
      * getId
      *
@@ -53,7 +53,7 @@ class Video
     {
         return $this->id;
     }
-    
+
     /**
      * getUrl
      *
@@ -63,7 +63,7 @@ class Video
     {
         return $this->url;
     }
-    
+
     /**
      * setUrl
      *
@@ -76,7 +76,7 @@ class Video
 
         return $this;
     }
-    
+
     /**
      * getVideoFile
      *
@@ -86,7 +86,7 @@ class Video
     {
         return $this->videoFile;
     }
-    
+
     /**
      * setVideoFile
      *
@@ -105,7 +105,7 @@ class Video
             $this->updatedAt = new \DateTimeImmutable('now');
         }
     }
-    
+
     /**
      * getFigure
      *
@@ -115,7 +115,7 @@ class Video
     {
         return $this->figure;
     }
-    
+
     /**
      * setFigure
      *
@@ -128,7 +128,7 @@ class Video
 
         return $this;
     }
-    
+
     /**
      * getUpdatedAt
      *
@@ -138,7 +138,7 @@ class Video
     {
         return $this->updatedAt;
     }
-    
+
     /**
      * setUpdatedAt
      *

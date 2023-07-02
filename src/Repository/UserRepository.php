@@ -55,7 +55,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->save($user, true);
     }
-    
+
     /**
      * getUsersCount
      *
@@ -70,7 +70,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         return $result;
     }
-    
+
     /**
      * getUsersByDate
      *
