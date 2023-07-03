@@ -45,7 +45,6 @@
 					</button>
 				</div>
 			{% else %}
-				<p>Pas d'image</p>
 				<div class="col-6">
 					<img class="img-fluid" src="/assets/images/snow1.jpg" alt="image de code"/>
 				</div>
@@ -70,7 +69,7 @@
 				{% endif %}
 
 				{% if figure.videos|length > 0 %}
-					<h4>Vidéos</h4>
+					<h3>Vidéos</h3>
 					<div class="lightbox-gallery mb-5">
 						<div class="container">
 							{% for video in figure.videos %}
