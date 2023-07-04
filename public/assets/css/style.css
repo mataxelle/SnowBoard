@@ -1,3 +1,25 @@
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+.content {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -142px;
+}
+
+.content:after {
+  content: "";
+  display: block;
+}
+.footer, .content:after {
+  /* .push must be the same height as footer */
+	height: 142px; 
+}
+
 .lightbox-gallery {
   /* background-image: linear-gradient(#4a148c, #e53935);
   background-repeat: no-repeat;
@@ -100,4 +122,9 @@ html {
   text-decoration: none;
   border: #3c2fca 1px solid;
   border-radius: 5px;
+}
+
+#pied-de-page {
+  position: absolute;
+  bottom: 0;
 }
