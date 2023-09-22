@@ -13,7 +13,7 @@ trait BlameableEntity
     #[Gedmo\Blameable(on: 'create')]
     protected ?User $createdBy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\JoinColumn(nullable: true)]
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[Gedmo\Blameable(on: 'update')]
     protected ?User $updatedBy = null;
